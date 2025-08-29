@@ -71,20 +71,6 @@
 
     <!-- Header -->
     <header class="header">
-        <!-- Top Bar -->
-        <div class="top-bar">
-            <div class="container">
-                <div class="top-bar-content">
-                    <div class="top-bar-left">
-                        <span>ارسال رایگان برای خرید بالای ۵۰۰ هزار تومان</span>
-                        <span>ضمانت اصالت کالا</span>
-                    </div>
-                    <div class="top-bar-right">
-                        <span>پشتیبانی: ۰۲۱-۱۲۳۴۵۶۷۸</span>
-                    </div>
-                </div>
-            </div>
-        </div>
 
         <!-- Main Header -->
         <div class="main-header">
@@ -92,49 +78,66 @@
                 <!-- Navigation -->
                 <nav class="navigation">
                     <div class="nav-content">
+                        <div class="logo">
+                            <h1 class="mobile-accordion-toggle">عطرستان</h1>
+                        </div>
+                        <button class="nav-toggle" id="navToggle" aria-label="باز کردن منو">
+                            <i class="fas fa-bars"></i>
+                        </button>
                         <div class="nav-links">
                             <a href="index.html" class="nav-link">خانه</a>
+                            <a href="articles.html" class="nav-link">مقالات</a>
                             <a href="about.html" class="nav-link">درباره ما</a>
-                            <a href="articles.html" class="nav-link">مقاله‌ها</a>
+                        </div>
+                        <!-- Actions moved into nav for accordion -->
+                        <div class="header-actions">
+                            <button class="action-btn" id="toggleSearchAccordion" title="جستجو">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button class="action-btn theme-toggle" id="themeToggle">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                            <button class="action-btn cart-btn" id="cartBtn">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge" id="cartCount">0</span>
+                            </button>
+                            <button class="action-btn user-btn">
+                                <i class="fas fa-user"></i>
+                            </button>
+                        </div>
+                        <!-- Mobile Search moved into nav for accordion -->
+                        <div class="mobile-search">
+                            <input type="text" placeholder="جستجو در عطرها...">
+                            <button type="button">
+                                <i class="fas fa-search"></i>
+                            </button>
                         </div>
                     </div>
                 </nav>
 
                 <div class="header-content">
-                    <!-- Logo -->
+                    <!-- Desktop Logo -->
                     <div class="logo">
                         <h1>عطرستان</h1>
                     </div>
-
-                    <!-- Search Bar -->
+                    <!-- Desktop Search (separate block) -->
+                    <div class="header-search">
+                        <div class="search-bar">
+                            <input type="text" placeholder="جستجو در عطرها..." id="searchInput">
+                            <button type="button" class="search-btn">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Search Accordion (inside nav collapse) -->
+                <div class="search-accordion">
                     <div class="search-bar">
-                        <input type="text" placeholder="جستجو در عطرها..." id="searchInput">
-                        <button type="button" class="search-btn">
+                        <input type="text" placeholder="جستجو در عطرها..." id="searchAccordionInput">
+                        <button type="button" class="search-btn" id="searchAccordionSubmit">
                             <i class="fas fa-search"></i>
                         </button>
                     </div>
-
-                    <!-- Actions -->
-                    <div class="header-actions">
-                        <button class="action-btn theme-toggle" id="themeToggle">
-                            <i class="fas fa-moon"></i>
-                        </button>
-                        <button class="action-btn cart-btn" id="cartBtn">
-                            <i class="fas fa-shopping-cart"></i>
-                            <span class="badge" id="cartCount">0</span>
-                        </button>
-                        <button class="action-btn user-btn">
-                            <i class="fas fa-user"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Mobile Search -->
-                <div class="mobile-search">
-                    <input type="text" placeholder="جستجو در عطرها...">
-                    <button type="button">
-                        <i class="fas fa-search"></i>
-                    </button>
                 </div>
             </div>
         </div>
@@ -598,6 +601,11 @@
     <div class="notification" id="notification">
         <span id="notificationText"></span>
     </div>
+
+    <!-- Floating Cart Button (Mobile) -->
+    <button class="fab-cart" id="fabCartBtn" aria-label="سبد خرید">
+        <i class="fas fa-shopping-cart"></i>
+    </button>
 
     <!-- JavaScript -->
     <script src="script.js" defer></script>

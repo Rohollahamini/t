@@ -522,48 +522,35 @@ if(generateReportBtn) {
   });
 }
 
-// Global search with enhanced functionality
-const globalSearch = document.getElementById('globalSearch');
-if(globalSearch){
-  globalSearch.addEventListener('input', ()=>{
-    const query = globalSearch.value.trim();
-    if(query){
-      document.querySelector('[data-section="products"]').click();
-      searchInput.value = query;
-      renderProducts();
-    }
-  });
-}
-
-// Notification system
+// Simple message functions (without notifications)
 function showSuccessMessage(message) {
-  showNotification(message, 'success');
+  console.log('Success:', message);
 }
 
 function showErrorMessage(message) {
-  showNotification(message, 'error');
+  console.log('Error:', message);
 }
 
-function showNotification(message, type = 'info') {
-  const notification = document.createElement('div');
-  notification.className = `notification ${type}`;
-  notification.innerHTML = `
-    <i class="fa-solid fa-${type === 'success' ? 'check' : type === 'error' ? 'exclamation-triangle' : 'info-circle'}"></i>
-    <span>${message}</span>
-  `;
+// Sidebar toggle functionality
+function initSidebarToggle() {
+  const sidebarToggle = document.getElementById('sidebarToggle');
+  const sidebar = document.getElementById('sidebar');
   
-  document.body.appendChild(notification);
-  
-  setTimeout(() => {
-    notification.classList.add('show');
-  }, 100);
-  
-  setTimeout(() => {
-    notification.classList.remove('show');
-    setTimeout(() => {
-      document.body.removeChild(notification);
-    }, 300);
-  }, 3000);
+  if (sidebarToggle && sidebar) {
+    sidebarToggle.addEventListener('click', () => {
+      sidebar.classList.toggle('open');
+    });
+    
+    // Close sidebar when clicking on menu items (mobile)
+    const menuItems = document.querySelectorAll('.menu-item');
+    menuItems.forEach(item => {
+      item.addEventListener('click', () => {
+        if (window.innerWidth <= 720) {
+          sidebar.classList.remove('open');
+        }
+      });
+    });
+  }
 }
 
 // Initialize everything
@@ -573,6 +560,7 @@ document.addEventListener('DOMContentLoaded', function() {
   refreshStats();
   renderActivities();
   initCharts();
+  initSidebarToggle();
   
   // Add some demo activities only if no activities exist
   if (!localStorage.getItem('admin_activities')) {
@@ -606,40 +594,6 @@ const additionalStyles = `
   .chart-info {
     font-size: 0.9rem;
     color: var(--text-secondary);
-  }
-  
-  .notification {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1rem 1.5rem;
-    box-shadow: var(--shadow);
-    z-index: 10000;
-    transform: translateX(100%);
-    transition: transform 0.3s ease;
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    backdrop-filter: blur(20px);
-  }
-  
-  .notification.show {
-    transform: translateX(0);
-  }
-  
-  .notification.success {
-    border-left: 4px solid var(--success);
-  }
-  
-  .notification.error {
-    border-left: 4px solid var(--danger);
-  }
-  
-  .notification.info {
-    border-left: 4px solid var(--primary);
   }
 `;
 const modalEl = document.getElementById('productModalEl');

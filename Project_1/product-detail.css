@@ -1,5 +1,10 @@
  /* Product Detail Page Styles */
 
+/* Floating Cart Button - Hidden on Desktop */
+.fab-cart {
+    display: none;
+}
+
 /* CSS Variables */
 :root {
     --primary-color: #3b82f6;
@@ -1200,6 +1205,109 @@ body.dark-mode .product-card .quantity-btn:hover {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    /* Header responsive fixes */
+    .header-content {
+        display: none;
+    }
+    
+    .navigation .logo h1.mobile-accordion-toggle {
+        cursor: pointer;
+        transition: color 0.3s;
+    }
+    
+    .navigation .logo h1.mobile-accordion-toggle:hover {
+        color: var(--primary-color);
+    }
+    
+    .nav-links {
+        display: none;
+    }
+    
+    .navigation.logo-open .nav-links {
+        display: flex;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        width: max-content;
+        min-width: 180px;
+        background: #ffffff;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+        flex-direction: column;
+        align-items: stretch;
+        padding: 8px 12px;
+        gap: 6px;
+        margin-top: 6px;
+        border: 1px solid #e5e7eb;
+        border-radius: 10px;
+        z-index: 150;
+    }
+    
+    body.dark-mode .navigation.logo-open .nav-links {
+        background: #2d2d2d;
+        border-color: #374151;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+    
+    .search-accordion {
+        display: none;
+        padding: 1rem;
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border-color);
+    }
+    
+    .search-accordion.open {
+        display: block;
+    }
+    
+    .search-accordion .search-bar {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .search-accordion input {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+    }
+    
+    .search-accordion .search-btn {
+        padding: 0.75rem 1rem;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+    }
+    
+    .fab-cart {
+        display: block;
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+        cursor: pointer;
+        z-index: 1000;
+        transition: all 0.3s;
+    }
+    
+    .fab-cart:hover {
+        transform: scale(1.1);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    }
+    
+    .fab-cart i {
+        font-size: 1.2rem;
+    }
+
     .product-content {
         grid-template-columns: 1fr;
         gap: 2rem;

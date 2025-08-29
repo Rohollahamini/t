@@ -160,6 +160,12 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize cart functionality
     initCart();
+    
+    // Initialize mobile navigation and search accordion
+    initMobileNav();
+    initSearchAccordion();
+    initLogoAccordion();
+    initFabCart();
 });
 
 // Load product data from URL parameter
@@ -933,3 +939,71 @@ const imageObserver = new IntersectionObserver((entries, observer) => {
 });
 
 images.forEach(img => imageObserver.observe(img));
+
+// Mobile Navigation Functions
+function initMobileNav() {
+    const navToggle = document.getElementById('navToggle');
+    const navigation = document.querySelector('.navigation');
+    
+    if (navToggle && navigation) {
+        navToggle.addEventListener('click', function() {
+            navigation.classList.toggle('open');
+        });
+        
+        // Close menu when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navigation.contains(e.target) && !navToggle.contains(e.target)) {
+                navigation.classList.remove('open');
+            }
+        });
+    }
+}
+
+// Search Accordion Function
+function initSearchAccordion() {
+    const toggleSearchBtn = document.getElementById('toggleSearchAccordion');
+    const searchAccordion = document.querySelector('.search-accordion');
+    
+    if (toggleSearchBtn && searchAccordion) {
+        toggleSearchBtn.addEventListener('click', function() {
+            searchAccordion.classList.toggle('open');
+        });
+        
+        // Close search accordion when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!searchAccordion.contains(e.target) && !toggleSearchBtn.contains(e.target)) {
+                searchAccordion.classList.remove('open');
+            }
+        });
+    }
+}
+
+// Logo Accordion Function
+function initLogoAccordion() {
+    const logoToggle = document.querySelector('.logo h1.mobile-accordion-toggle');
+    const navigation = document.querySelector('.navigation');
+    
+    if (logoToggle && navigation) {
+        logoToggle.addEventListener('click', function() {
+            navigation.classList.toggle('logo-open');
+        });
+        
+        // Close logo accordion when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!navigation.contains(e.target) && !logoToggle.contains(e.target)) {
+                navigation.classList.remove('logo-open');
+            }
+        });
+    }
+}
+
+// Floating Cart Button Function
+function initFabCart() {
+    const fabCartBtn = document.getElementById('fabCartBtn');
+    
+    if (fabCartBtn) {
+        fabCartBtn.addEventListener('click', function() {
+            openCart();
+        });
+    }
+}
