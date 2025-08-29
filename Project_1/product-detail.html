@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عطر Dior Sauvage - عطرستان</title>
+    <meta name="description" content="عطر Dior Sauvage مردانه، رایحه‌ای تازه و جذاب برای آقایان">
+    <meta name="keywords" content="عطر Dior Sauvage، عطر مردانه، Dior، عطرستان">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="product-detail.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="product-detail.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prevent FOUC -->
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="top-bar-left">
+                        <span>ارسال رایگان برای خرید بالای ۵۰۰ هزار تومان</span>
+                        <span>ضمانت اصالت کالا</span>
+                    </div>
+                    <div class="top-bar-right">
+                        <span>پشتیبانی: ۰۲۱-۱۲۳۴۵۶۷۸</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <!-- Navigation -->
+                <nav class="navigation">
+                    <div class="nav-content">
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link">خانه</a>
+                            <a href="about.html" class="nav-link">درباره ما</a>
+                            <a href="articles.html" class="nav-link">مقاله‌ها</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>عطرستان</h1>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <input type="text" placeholder="جستجو در عطرها..." id="searchInput">
+                        <button type="button" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="header-actions">
+                        <button class="action-btn theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="action-btn cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge" id="cartCount">0</span>
+                        </button>
+                        <button class="action-btn user-btn">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Search -->
+                <div class="mobile-search">
+                    <input type="text" placeholder="جستجو در عطرها...">
+                    <button type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section class="breadcrumb">
+        <div class="container">
+            <nav class="breadcrumb-nav">
+                <a href="index.html">خانه</a>
+                <i class="fas fa-chevron-left"></i>
+                <a href="index.html">عطر مردانه</a>
+                <i class="fas fa-chevron-left"></i>
+                <a href="index.html">Dior</a>
+                <i class="fas fa-chevron-left"></i>
+                <span>Dior Sauvage</span>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Detail -->
+    <section class="product-detail">
+        <div class="container">
+            <div class="product-content">
+                <!-- Product Images -->
+                <div class="product-images">
+                    <div class="main-image">
+                        <img src="img.png" alt="Dior Sauvage" id="mainImage">
+                        <div class="image-zoom">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                    <div class="image-thumbnails">
+                        <div class="thumbnail active" data-image="img.png">
+                            <img src="img.png" alt="تصویر ۱">
+                        </div>
+                        <div class="thumbnail" data-image="img.png">
+                            <img src="img.png" alt="تصویر ۲">
+                        </div>
+                        <div class="thumbnail" data-image="img.png">
+                            <img src="img.png" alt="تصویر ۳">
+                        </div>
+                        <div class="thumbnail" data-image="img.png">
+                            <img src="img.png" alt="تصویر ۴">
+                        </div>
+                    </div>
+                    <div class="image-actions">
+                        <button type="button" class="btn-primary add-to-cart-left" id="addToCartLeft">
+                            <i class="fas fa-shopping-cart"></i>
+                            افزودن به سبد خرید
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Info -->
+                <div class="product-info">
+                    <div class="product-header">
+                        <h1 class="product-title">عطر Dior Sauvage مردانه</h1>
+                        <div class="product-brand">
+                            <img src="img.png" alt="Dior">
+                            <span>برند: Dior</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Rating -->
+                    <div class="product-rating">
+                        <div class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <span class="rating-score">۴.۸</span>
+                        <span class="rating-count">(۱۲۵ نظر)</span>
+                        <a href="#reviews" class="rating-link">مشاهده نظرات</a>
+                    </div>
+
+                    <!-- Product Price -->
+                    <div class="product-price">
+                        <div class="price-main">
+                            <span class="current-price">۲,۸۵۰,۰۰۰</span>
+                            <span class="currency">تومان</span>
+                        </div>
+                        <div class="price-original">
+                            <span class="original-price">۳,۲۰۰,۰۰۰</span>
+                            <span class="discount-percent">۱۱٪ تخفیف</span>
+                        </div>
+                        <div class="price-info">
+                            <span class="price-note">قیمت نهایی با احتساب مالیات</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Variants -->
+                    <div class="product-variants">
+                        <div class="variant-group">
+                            <label>حجم:</label>
+                            <div class="variant-options">
+                                <button class="variant-btn active" data-volume="50">۵۰ میلی‌لیتر</button>
+                                <button class="variant-btn" data-volume="100">۱۰۰ میلی‌لیتر</button>
+                                <button class="variant-btn" data-volume="200">۲۰۰ میلی‌لیتر</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Product Actions -->
+                    <div class="product-actions">
+                        <div class="quantity-selector">
+                            <label>تعداد:</label>
+                            <div class="quantity-controls">
+                                <button class="qty-btn" id="decreaseQty">-</button>
+                                <input type="number" value="1" min="1" max="10" id="quantity">
+                                <button class="qty-btn" id="increaseQty">+</button>
+                            </div>
+                        </div>
+                        
+                        <div class="action-buttons">
+                            <button class="btn-primary add-to-cart" id="addToCart">
+                                <i class="fas fa-shopping-cart"></i>
+                                افزودن به سبد خرید
+                            </button>
+                            <button class="btn-secondary buy-now" id="buyNow">
+                                <i class="fas fa-bolt"></i>
+                                خرید فوری
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Product Features -->
+                    <div class="product-features">
+                        <div class="feature-item">
+                            <i class="fas fa-shipping-fast"></i>
+                            <span>ارسال رایگان</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>ضمانت اصالت</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-undo"></i>
+                            <span>بازگشت ۷ روزه</span>
+                        </div>
+                        <div class="feature-item">
+                            <i class="fas fa-headset"></i>
+                            <span>پشتیبانی ۲۴/۷</span>
+                        </div>
+                    </div>
+
+                    <!-- Product Share -->
+                    <div class="product-share">
+                        <span>اشتراک‌گذاری:</span>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn whatsapp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                            <a href="#" class="share-btn telegram">
+                                <i class="fab fa-telegram"></i>
+                            </a>
+                            <a href="#" class="share-btn instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="#" class="share-btn twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Details Tabs -->
+    <section class="product-tabs">
+        <div class="container">
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button type="button" class="tab-btn active" data-tab="description">توضیحات</button>
+                    <button type="button" class="tab-btn" data-tab="specifications">مشخصات</button>
+                    <button type="button" class="tab-btn" data-tab="reviews">نظرات</button>
+                    <button type="button" class="tab-btn" data-tab="questions">سوالات</button>
+                </div>
+
+                <div class="tabs-content">
+                    <!-- Description Tab -->
+                    <div class="tab-content active" id="description">
+                        <div class="description-content">
+                            <h3>توضیحات محصول</h3>
+                            <p>عطر Dior Sauvage یکی از محبوب‌ترین عطرهای مردانه در جهان است که با رایحه‌ای تازه و جذاب، حس اعتماد به نفس و جذابیت را به آقایان هدیه می‌دهد.</p>
+                            
+                            <h4>رایحه و ترکیبات:</h4>
+                            <ul>
+                                <li><strong>نت اولیه:</strong> برگری، فلفل سیاه، پینک پپر</li>
+                                <li><strong>نت میانی:</strong> اسطوخودوس، وتیور، جیرانیم</li>
+                                <li><strong>نت پایه:</strong> کهربا، چوب صندل، لابدانوم</li>
+                            </ul>
+
+                            <h4>ویژگی‌های کلیدی:</h4>
+                            <ul>
+                                <li>ماندگاری بالا (۸-۱۲ ساعت)</li>
+                                <li>پخش رایحه قوی</li>
+                                <li>مناسب برای استفاده روزانه و رسمی</li>
+                                <li>طراحی شیشه مدرن و لوکس</li>
+                                <li>سازگار با پوست‌های مختلف</li>
+                            </ul>
+
+                            <h4>نحوه استفاده:</h4>
+                            <p>برای بهترین نتیجه، عطر را روی نقاط نبض‌دار بدن مانند مچ دست، گردن و پشت گوش اسپری کنید. این نقاط گرم‌تر هستند و رایحه را بهتر پخش می‌کنند.</p>
+                        </div>
+                    </div>
+
+                    <!-- Specifications Tab -->
+                    <div class="tab-content" id="specifications">
+                        <div class="specifications-content">
+                            <h3>مشخصات فنی</h3>
+                            <table class="specs-table">
+                                <tr>
+                                    <td>برند</td>
+                                    <td>Dior</td>
+                                </tr>
+                                <tr>
+                                    <td>نوع</td>
+                                    <td>عطر مردانه</td>
+                                </tr>
+                                <tr>
+                                    <td>حجم</td>
+                                    <td>۵۰، ۱۰۰، ۲۰۰ میلی‌لیتر</td>
+                                </tr>
+                                <tr>
+                                    <td>ماندگاری</td>
+                                    <td>۸-۱۲ ساعت</td>
+                                </tr>
+                                <tr>
+                                    <td>پخش رایحه</td>
+                                    <td>قوی</td>
+                                </tr>
+                                <tr>
+                                    <td>مناسب فصل</td>
+                                    <td>بهار و تابستان</td>
+                                </tr>
+                                <tr>
+                                    <td>مناسب سن</td>
+                                    <td>۲۵-۴۵ سال</td>
+                                </tr>
+                                <tr>
+                                    <td>کشور سازنده</td>
+                                    <td>فرانسه</td>
+                                </tr>
+                                <tr>
+                                    <td>تاریخ تولید</td>
+                                    <td>۲۰۲۳</td>
+                                </tr>
+                                <tr>
+                                    <td>تاریخ انقضا</td>
+                                    <td>۵ سال پس از تولید</td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Tab -->
+                    <div class="tab-content" id="reviews">
+                        <div class="reviews-content">
+                            <div class="reviews-header">
+                                <h3>نظرات مشتریان</h3>
+                                <div class="reviews-summary">
+                                    <div class="overall-rating">
+                                        <span class="rating-number">۴.۸</span>
+                                        <div class="stars">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <span class="total-reviews">از ۱۲۵ نظر</span>
+                                    </div>
+                                    <button class="btn-primary write-review">نظر خود را بنویسید</button>
+                                </div>
+                            </div>
+
+                            <div class="reviews-list">
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <span class="reviewer-name">احمد محمدی</span>
+                                            <div class="stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <span class="review-date">۲ روز پیش</span>
+                                    </div>
+                                    <p class="review-text">عالی بود! رایحه‌اش فوق‌العاده است و ماندگاری بالایی دارد. حتماً دوباره خرید می‌کنم.</p>
+                                </div>
+
+                                <div class="review-item">
+                                    <div class="review-header">
+                                        <div class="reviewer-info">
+                                            <span class="reviewer-name">علی رضایی</span>
+                                            <div class="stars">
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="fas fa-star"></i>
+                                                <i class="far fa-star"></i>
+                                            </div>
+                                        </div>
+                                        <span class="review-date">۱ هفته پیش</span>
+                                    </div>
+                                    <p class="review-text">کیفیت خوبی دارد و بسته‌بندی‌اش هم عالی بود. فقط کمی گران است.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Questions Tab -->
+                    <div class="tab-content" id="questions">
+                        <div class="questions-content">
+                            <h3>سوالات متداول</h3>
+                            <div class="faq-list">
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>آیا این عطر اصل است؟</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>بله، تمام محصولات ما اصل و دارای گارانتی اصالت هستند.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>چقدر ماندگاری دارد؟</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>این عطر بین ۸ تا ۱۲ ساعت ماندگاری دارد.</p>
+                                    </div>
+                                </div>
+
+                                <div class="faq-item">
+                                    <div class="faq-question">
+                                        <span>آیا امکان بازگشت وجود دارد؟</span>
+                                        <i class="fas fa-chevron-down"></i>
+                                    </div>
+                                    <div class="faq-answer">
+                                        <p>بله، تا ۷ روز پس از خرید امکان بازگشت کالا وجود دارد.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section class="related-products">
+        <div class="container">
+            <h2 class="section-title">محصولات مشابه</h2>
+            <div class="products-grid">
+                <!-- Related products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عطرستان</h3>
+                    <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>دسترسی سریع</h4>
+                    <ul>
+                        <li><a href="#">عطر مردانه</a></li>
+                        <li><a href="#">عطر زنانه</a></li>
+                        <li><a href="#">عطر یونیسکس</a></li>
+                        <li><a href="#">برندها</a></li>
+                        <li><a href="#">تخفیف‌ها</a></li>
+                        <li><a href="#">جدیدترین‌ها</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>خدمات مشتریان</h4>
+                    <ul>
+                        <li><a href="#">راهنمای خرید</a></li>
+                        <li><a href="#">شرایط بازگشت</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                        <li><a href="#">نظرات مشتریان</a></li>
+                        <li><a href="#">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اطلاعات تماس</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@atrestan.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © ۱۴۰۲ عطرستان. تمامی حقوق محفوظ است.
+                </div>
+                <div class="footer-links">
+                    <a href="#">حریم خصوصی</a>
+                    <a href="#">قوانین استفاده</a>
+                    <a href="#">نقشه سایت</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سبد خرید</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>مجموع:</span>
+                <span id="cartTotal">۰ تومان</span>
+            </div>
+            <button class="checkout-btn">نهایی کردن خرید</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script src="product-detail.js" defer></script>
+    <script>
+        // Prevent FOUC and handle loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen and show content
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Fallback if DOMContentLoaded doesn't fire
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Error handling for failed resources
+        window.addEventListener('error', function(e) {
+            console.error('Resource failed to load:', e.target.src || e.target.href);
+        });
+    </script>
+</body>
+</html>

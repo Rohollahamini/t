@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فروشگاه عطر | بهترین عطرهای دنیا</title>
+    <meta name="description" content="فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا">
+    <meta name="keywords" content="عطر، ادکلن، فروشگاه عطر، عطر مردانه، عطر زنانه">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prevent FOUC -->
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="top-bar-left">
+                        <span>ارسال رایگان برای خرید بالای ۵۰۰ هزار تومان</span>
+                        <span>ضمانت اصالت کالا</span>
+                    </div>
+                    <div class="top-bar-right">
+                        <span>پشتیبانی: ۰۲۱-۱۲۳۴۵۶۷۸</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <!-- Navigation moved to top -->
+                <nav class="navigation">
+                    <div class="nav-content">
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link active">خانه</a>
+                            <a href="about.html" class="nav-link">درباره ما</a>
+                            <a href="articles.html" class="nav-link">مقاله‌ها</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>عطرستان</h1>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="search-bar">
+                        <input type="text" placeholder="جستجو در عطرها..." id="searchInput">
+                        <button type="button" class="search-btn">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="header-actions">
+                        <button class="action-btn theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="action-btn cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge" id="cartCount">0</span>
+                        </button>
+                        <button class="action-btn user-btn">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Mobile Search -->
+                <div class="mobile-search">
+                    <input type="text" placeholder="جستجو در عطرها...">
+                    <button type="button">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">بهترین عطرهای دنیا</h1>
+                <p class="hero-subtitle">با کیفیت ترین عطرها از معتبرترین برندهای دنیا</p>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <span class="stat-number">۸+</span>
+                        <p class="stat-text">برند معتبر</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">۵۰۰۰+</span>
+                        <p class="stat-text">مشتری راضی</p>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number">۱۰۰%</span>
+                        <p class="stat-text">ضمانت اصالت</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories -->
+    <section class="categories">
+        <div class="container">
+            <h2 class="section-title">دسته‌بندی محصولات</h2>
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">همه (۸)</button>
+                <button class="category-btn" data-category="men">مردانه (۳)</button>
+                <button class="category-btn" data-category="women">زنانه (۳)</button>
+                <button class="category-btn" data-category="unisex">یونیسکس (۲)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters -->
+    <section class="filters">
+        <div class="container">
+            <div class="filter-panel">
+                <div class="filter-group">
+                    <label>دسته‌بندی کالا:</label>
+                    <select id="categoryFilter">
+                        <option value="all">همه انواع</option>
+                        <option value="men">مردانه</option>
+                        <option value="women">زنانه</option>
+                        <option value="unisex">یونیسکس</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>برند:</label>
+                    <select id="brandFilter">
+                        <option value="all">همه برندها</option>
+                        <option value="Dior">Dior</option>
+                        <option value="Chanel">Chanel</option>
+                        <option value="Tom Ford">Tom Ford</option>
+                        <option value="Armani">Armani</option>
+                        <option value="Victoria's Secret">Victoria's Secret</option>
+                        <option value="Jo Malone">Jo Malone</option>
+                        <option value="Hugo Boss">Hugo Boss</option>
+                        <option value="Lancome">Lancome</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>فیلتر قیمت:</label>
+                    <div class="price-filter">
+                        <input type="range" id="priceRange" min="0" max="100000000" value="100000000" step="1000000">
+                        <div class="price-inputs">
+                            <input type="number" id="minPrice" placeholder="حداقل قیمت" min="0" max="100000000">
+                            <span>تا</span>
+                            <input type="number" id="maxPrice" placeholder="حداکثر قیمت" min="0" max="100000000" value="100000000">
+                        </div>
+                        <div class="price-display">
+                            <span id="priceDisplay">0 تا ۱۰۰,۰۰۰,۰۰۰ تومان</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filter-group">
+                    <label>مرتب‌سازی:</label>
+                    <select id="sortFilter">
+                        <option value="popular">محبوب‌ترین</option>
+                        <option value="price-low">ارزان‌ترین</option>
+                        <option value="price-high">گران‌ترین</option>
+                        <option value="rating">بهترین امتیاز</option>
+                        <option value="newest">جدیدترین</option>
+                    </select>
+                </div>
+                <div class="view-mode">
+                    <button class="view-btn active" data-view="grid">
+                        <i class="fas fa-th"></i>
+                    </button>
+                    <button class="view-btn" data-view="list">
+                        <i class="fas fa-list"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Special Offers -->
+    <section class="special-offers">
+        <div class="container">
+            <h2 class="section-title">پیشنهادات ویژه</h2>
+            <p class="section-subtitle">فرصت خرید با بهترین قیمت‌ها</p>
+            <div class="offers-grid">
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <h3>تخفیف ۳۰٪</h3>
+                    <p>برای خرید بالای ۱ میلیون تومان</p>
+                    <button class="offer-btn">مشاهده محصولات</button>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>پرفروش‌ترین‌ها</h3>
+                    <p>عطرهای محبوب و پرفروش</p>
+                    <button class="offer-btn">مشاهده محصولات</button>
+                </div>
+                <div class="offer-card">
+                    <div class="offer-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <h3>جدیدترین‌ها</h3>
+                    <p>آخرین محصولات اضافه شده</p>
+                    <button class="offer-btn">مشاهده محصولات</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Section -->
+    <section class="trust-section">
+        <div class="container">
+            <h2 class="section-title">چرا عطرستان؟</h2>
+            <p class="section-subtitle">ما متعهد به ارائه بهترین خدمات و محصولات به شما هستیم</p>
+            
+            <div class="trust-features">
+                <div class="trust-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>ضمانت اصالت کالا</h3>
+                    <p>تمام محصولات ما اصل و دارای گارانتی اصالت هستند</p>
+                </div>
+                <div class="trust-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3>ارسال رایگان</h3>
+                    <p>برای خرید بالای ۵۰۰ هزار تومان، ارسال کاملاً رایگان</p>
+                </div>
+                <div class="trust-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-undo"></i>
+                    </div>
+                    <h3>بازگشت ۷ روزه</h3>
+                    <p>امکان بازگشت کالا تا ۷ روز پس از خرید</p>
+                </div>
+                <div class="trust-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-credit-card"></i>
+                    </div>
+                    <h3>پرداخت امن</h3>
+                    <p>پرداخت آنلاین امن با درگاه‌های معتبر</p>
+                </div>
+                <div class="trust-feature">
+                    <div class="feature-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3>پشتیبانی ۲۴/۷</h3>
+                    <p>پشتیبانی شبانه‌روزی در تمام روزهای هفته</p>
+                </div>
+            </div>
+
+            <!-- Trust Badges -->
+            <div class="trust-badges">
+                <h3>نمادهای اعتماد</h3>
+                <p>ما دارای تمام نمادهای اعتماد الکترونیکی هستیم</p>
+                <div class="badges">
+                    <div class="trust-badge">نماد اعتماد الکترونیکی</div>
+                    <div class="trust-badge">درگاه پرداخت امن</div>
+                    <div class="trust-badge">ضمانت اصالت کالا</div>
+                    <div class="trust-badge">پشتیبانی ۲۴/۷</div>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عطرستان</h3>
+                    <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>دسترسی سریع</h4>
+                    <ul>
+                        <li><a href="#">عطر مردانه</a></li>
+                        <li><a href="#">عطر زنانه</a></li>
+                        <li><a href="#">عطر یونیسکس</a></li>
+                        <li><a href="#">برندها</a></li>
+                        <li><a href="#">تخفیف‌ها</a></li>
+                        <li><a href="#">جدیدترین‌ها</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>خدمات مشتریان</h4>
+                    <ul>
+                        <li><a href="#">راهنمای خرید</a></li>
+                        <li><a href="#">شرایط بازگشت</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                        <li><a href="#">نظرات مشتریان</a></li>
+                        <li><a href="#">قوانین و مقررات</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اطلاعات تماس</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@atrestan.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر</span>
+                        </div>
+                    </div>
+                    <div class="working-hours">
+                        <h5>ساعات کاری</h5>
+                        <p>شنبه تا چهارشنبه: ۹ صبح تا ۸ شب</p>
+                        <p>پنجشنبه: ۹ صبح تا ۶ عصر</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © ۱۴۰۲ عطرستان. تمامی حقوق محفوظ است.
+                </div>
+                <div class="footer-links">
+                    <a href="#">حریم خصوصی</a>
+                    <a href="#">قوانین استفاده</a>
+                    <a href="#">نقشه سایت</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سبد خرید</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>مجموع:</span>
+                <span id="cartTotal">۰ تومان</span>
+            </div>
+            <button class="checkout-btn">نهایی کردن خرید</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script>
+        // Prevent FOUC and handle loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen and show content
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Fallback if DOMContentLoaded doesn't fire
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Error handling for failed resources
+        window.addEventListener('error', function(e) {
+            console.error('Resource failed to load:', e.target.src || e.target.href);
+        });
+    </script>
+</body>
+</html> 

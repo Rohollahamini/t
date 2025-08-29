@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>مقاله‌ها | عطرستان</title>
+    <meta name="description" content="مقالات آموزشی و تخصصی درباره عطر و ادکلن">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prevent FOUC -->
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="top-bar-left">
+                        <span>ارسال رایگان برای خرید بالای ۵۰۰ هزار تومان</span>
+                        <span>ضمانت اصالت کالا</span>
+                    </div>
+                    <div class="top-bar-right">
+                        <span>پشتیبانی: ۰۲۱-۱۲۳۴۵۶۷۸</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <!-- Navigation moved to top -->
+                <nav class="navigation">
+                    <div class="nav-content">
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link">خانه</a>
+                            <a href="about.html" class="nav-link">درباره ما</a>
+                            <a href="articles.html" class="nav-link active">مقاله‌ها</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>عطرستان</h1>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="header-actions">
+                        <button class="action-btn theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="action-btn cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge" id="cartCount">0</span>
+                        </button>
+                        <button class="action-btn user-btn">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Articles Hero Section -->
+    <section class="articles-hero">
+        <div class="container">
+            <div class="articles-hero-content">
+                <h1 class="articles-hero-title">مقاله‌های تخصصی</h1>
+                <p class="articles-hero-subtitle">آخرین مقالات و راهنمای‌های تخصصی درباره عطر و ادکلن</p>
+                
+                <!-- Article Search -->
+                <div class="article-search">
+                    <input type="text" placeholder="جستجو در مقاله‌ها..." id="articleSearchInput">
+                    <button type="button" class="article-search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Categories -->
+    <section class="article-categories">
+        <div class="container">
+            <div class="category-buttons">
+                <button class="category-btn active" data-category="all">همه (۱۲)</button>
+                <button class="category-btn" data-category="guide">راهنما (۵)</button>
+                <button class="category-btn" data-category="review">بررسی (۴)</button>
+                <button class="category-btn" data-category="tips">نکات (۳)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Articles Grid -->
+    <section class="articles-section">
+        <div class="container">
+            <div class="articles-grid" id="articlesGrid">
+                <!-- Articles will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Articles -->
+    <section class="popular-articles">
+        <div class="container">
+            <h2 class="section-title">مقاله‌های محبوب</h2>
+            <div class="popular-articles-grid">
+                <div class="popular-article-card">
+                    <div class="popular-article-image">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="popular-article-content">
+                        <h3>چگونه عطر مناسب خود را انتخاب کنیم؟</h3>
+                        <p>راهنمای کامل انتخاب عطر بر اساس شخصیت و سلیقه شما</p>
+                        <div class="article-meta">
+                            <span class="article-date">۲ روز پیش</span>
+                            <span class="article-views">۱,۲۴۷ بازدید</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="popular-article-card">
+                    <div class="popular-article-image">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="popular-article-content">
+                        <h3>تفاوت عطر مردانه و زنانه</h3>
+                        <p>آشنایی با ویژگی‌های منحصر به فرد عطرهای مردانه و زنانه</p>
+                        <div class="article-meta">
+                            <span class="article-date">۱ هفته پیش</span>
+                            <span class="article-views">۸۹۲ بازدید</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="popular-article-card">
+                    <div class="popular-article-image">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="popular-article-content">
+                        <h3>نحوه نگهداری صحیح عطر</h3>
+                        <p>راهنمای نگهداری عطر برای حفظ کیفیت و ماندگاری</p>
+                        <div class="article-meta">
+                            <span class="article-date">۲ هفته پیش</span>
+                            <span class="article-views">۶۵۴ بازدید</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عطرستان</h3>
+                    <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>دسترسی سریع</h4>
+                    <ul>
+                        <li><a href="index.html">خانه</a></li>
+                        <li><a href="about.html">درباره ما</a></li>
+                        <li><a href="articles.html">مقاله‌ها</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>خدمات مشتریان</h4>
+                    <ul>
+                        <li><a href="#">راهنمای خرید</a></li>
+                        <li><a href="#">شرایط بازگشت</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اطلاعات تماس</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@atrestan.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © ۱۴۰۲ عطرستان. تمامی حقوق محفوظ است.
+                </div>
+                <div class="footer-links">
+                    <a href="#">حریم خصوصی</a>
+                    <a href="#">قوانین استفاده</a>
+                    <a href="#">نقشه سایت</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سبد خرید</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>مجموع:</span>
+                <span id="cartTotal">۰ تومان</span>
+            </div>
+            <button class="checkout-btn">نهایی کردن خرید</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script src="articles.js" defer></script>
+    <script>
+        // Prevent FOUC and handle loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen and show content
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Fallback if DOMContentLoaded doesn't fire
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Error handling for failed resources
+        window.addEventListener('error', function(e) {
+            console.error('Resource failed to load:', e.target.src || e.target.href);
+        });
+    </script>
+</body>
+</html>

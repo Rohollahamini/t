@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>فرم محصول</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .form-header h1 {
+            font-size: 28px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .form-content {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .image-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .main-image {
+            width: 100%;
+            height: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            border: 2px dashed #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8f9fa;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .main-image:hover {
+            border-color: #667eea;
+            background: #f0f4ff;
+        }
+        
+        .main-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .main-image-placeholder {
+            text-align: center;
+            color: #666;
+        }
+        
+        .main-image-placeholder i {
+            font-size: 48px;
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+        }
+        
+        .image-gallery {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        
+        .gallery-item {
+            width: 100%;
+            height: 80px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid #e9ecef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f8f9fa;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .gallery-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+        
+        .gallery-placeholder {
+            font-size: 20px;
+            color: #999;
+        }
+        
+        .form-section {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        
+        input, select, textarea {
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .price-calculator {
+            background: #f8f9ff;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e6e9ff;
+        }
+        
+        .price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .price-row:last-child {
+            border-bottom: none;
+        }
+        
+        .price-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .price-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .discount-badge {
+            background: #ff4757;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        
+        .final-price {
+            font-size: 18px;
+            color: #27ae60;
+            font-weight: 700;
+        }
+        
+        .stock-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .toggle-slider {
+            background-color: #27ae60;
+        }
+        
+        input:checked + .toggle-slider:before {
+            transform: translateX(26px);
+        }
+        
+        .tags-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        
+        .tag {
+            background: #667eea;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .tag-remove {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        
+        .form-actions {
+            grid-column: span 2;
+            display: flex;
+            gap: 15px;
+            justify-content: flex-end;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            margin-top: 20px;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-secondary {
+            background: #f8f9fa;
+            color: #666;
+            border: 1px solid #ddd;
+        }
+        
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
+        
+        @media (max-width: 768px) {
+            .form-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-actions {
+                grid-column: span 1;
+                flex-direction: column;
+            }
+            
+            .image-gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-header">
+            <h1>فرم ثبت محصول جدید</h1>
+        </div>
+        
+        <div class="form-content">
+            <!-- بخش تصاویر -->
+            <div class="image-section">
+                <div class="main-image" id="mainImageUpload">
+                    <img id="mainImagePreview" src="" alt="تصویر اصلی محصول" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3728cd2f-040d-4037-9f93-0d36726e7f17.png">
+                    <div class="main-image-placeholder">
+                        <i>📷</i>
+                        <p>برای آپلود تصویر اصلی کلیک کنید</p>
+                        <small>حداکثر سایز: 5MB</small>
+                    </div>
+                </div>
+                
+                <div class="image-gallery">
+                    <div class="gallery-item" id="galleryItem1">
+                        <img src="" alt="تصویر گالری محصول 1" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/09c2e9e1-fd38-4301-ae5d-2938081bd514.png">
+                        <div class="gallery-placeholder">+</div>
+                    </div>
+                    <div class="gallery-item" id="galleryItem2">
+                        <img src="" alt="تصویر گالری محصول 2" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/02bc37f7-b9de-48c7-8ffb-e4ec3a4ae8d0.png">
+                        <div class="gallery-placeholder">+</div>
+                    </div>
+                    <div class="gallery-item" id="galleryItem3">
+                        <img src="" alt="تصویر گالری محصول 3" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0082bf53-56c7-4d7c-9ade-4bb8c6402af4.png">
+                        <div class="gallery-placeholder">+</div>
+                    </div>
+                    <div class="gallery-item" id="galleryItem4">
+                        <img src="" alt="تصویر گالری محصول 4" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0be77c37-f225-4b50-b905-f162dd0bfb61.png">
+                        <div class="gallery-placeholder">+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- بخش فرم -->
+            <div class="form-section">
+                <div class="form-group">
+                    <label for="productName">نام محصول *</label>
+                    <input type="text" id="productName" placeholder="نام کامل محصول را وارد کنید" required>
+                </div>
+                
+                <div class="price-calculator">
+                    <h3 style="margin-bottom: 15px; color: #333;">محاسبه قیمت</h3>
+                    <div class="price-row">
+                        <span class="price-label">قیمت اصلی:</span>
+                        <input type="number" id="originalPrice" placeholder="0" min="0" step="1000" 
+                               style="width: 120px; text-align: left;" oninput="calculatePrices()">
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">قیمت نهایی:</span>
+                        <input type="number" id="finalPrice" placeholder="0" min="0" step="1000" 
+                               style="width: 120px; text-align: left;" oninput="calculateDiscount()">
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">درصد تخفیف:</span>
+                        <span class="price-value" id="discountPercentage">0%</span>
+                    </div>
+                    <div class="price-row">
+                        <span class="price-label">مبلغ تخفیف:</span>
+                        <span class="price-value" id="discountAmount">0 تومان</span>
+                    </div>
+                    <div class="price-row" style="margin-top: 10px; padding-top: 10px; border-top: 2px solid #ddd;">
+                        <span class="price-label">قیمت قابل پرداخت:</span>
+                        <span class="price-value final-price" id="payablePrice">0 تومان</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productQuantity">تعداد محصول *</label>
+                    <input type="number" id="productQuantity" placeholder="0" min="0" step="1" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>موجود در انبار</label>
+                    <div class="stock-toggle">
+                        <label class="toggle-switch">
+                            <input type="checkbox" id="inStock" checked>
+                            <span class="toggle-slider"></span>
+                        </label>
+                        <span id="stockStatus">موجود</span>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productDescription">توضیحات محصول</label>
+                    <textarea id="productDescription" placeholder="توضیحات کامل محصول را وارد کنید..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="productFeatures">ویژگی‌های محصول (با Enter جدا کنید)</label>
+                    <input type="text" id="productFeatures" placeholder="مثلاً: ضد حساسیت, ماندگاری بالا" 
+                           onkeypress="addFeature(event)">
+                    <div class="tags-container" id="featuresContainer"></div>
+                </div>
+            </div>
+            
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="resetForm()">لغو</button>
+                <button type="button" class="btn btn-primary" onclick="submitForm()">ثبت محصول</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // مدیریت وضعیت انبار
+        document.getElementById('inStock').addEventListener('change', function() {
+            document.getElementById('stockStatus').textContent = this.checked ? 'موجود' : 'ناموجود';
+        });
+        
+        // محاسبه قیمت‌ها بر اساس قیمت اصلی
+        function calculatePrices() {
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value) || 0;
+            const finalPrice = parseFloat(document.getElementById('finalPrice').value) || 0;
+            
+            if (originalPrice > 0 && finalPrice > 0 && finalPrice < originalPrice) {
+                const discountAmount = originalPrice - finalPrice;
+                const discountPercentage = ((discountAmount / originalPrice) * 100).toFixed(1);
+                
+                document.getElementById('discountPercentage').textContent = discountPercentage + '%';
+                document.getElementById('discountAmount').textContent = discountAmount.toLocaleString() + ' تومان';
+                document.getElementById('payablePrice').textContent = finalPrice.toLocaleString() + ' تومان';
+            } else if (originalPrice > 0) {
+                document.getElementById('finalPrice').value = originalPrice;
+                document.getElementById('discountPercentage').textContent = '0%';
+                document.getElementById('discountAmount').textContent = '0 تومان';
+                document.getElementById('payablePrice').textContent = originalPrice.toLocaleString() + ' تومان';
+            }
+        }
+        
+        // محاسبه تخفیف بر اساس قیمت نهایی
+        function calculateDiscount() {
+            const originalPrice = parseFloat(document.getElementById('originalPrice').value) || 0;
+            const finalPrice = parseFloat(document.getElementById('finalPrice').value) || 0;
+            
+            if (originalPrice > 0 && finalPrice > 0) {
+                if (finalPrice > originalPrice) {
+                    alert('قیمت نهایی نمی‌تواند بیشتر از قیمت اصلی باشد!');
+                    document.getElementById('finalPrice').value = originalPrice;
+                    calculatePrices();
+                    return;
+                }
+                
+                const discountAmount = originalPrice - finalPrice;
+                const discountPercentage = ((discountAmount / originalPrice) * 100).toFixed(1);
+                
+                document.getElementById('discountPercentage').textContent = discountPercentage + '%';
+                document.getElementById('discountAmount').textContent = discountAmount.toLocaleString() + ' تومان';
+                document.getElementById('payablePrice').textContent = finalPrice.toLocaleString() + ' تومان';
+            }
+        }
+        
+        // اضافه کردن ویژگی‌ها
+        function addFeature(event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                const featureInput = document.getElementById('productFeatures');
+                const featureText = featureInput.value.trim();
+                
+                if (featureText) {
+                    const featuresContainer = document.getElementById('featuresContainer');
+                    const tag = document.createElement('div');
+                    tag.className = 'tag';
+                    tag.innerHTML = `
+                        ${featureText}
+                        <span class="tag-remove" onclick="removeFeature(this)">×</span>
+                    `;
+                    featuresContainer.appendChild(tag);
+                    featureInput.value = '';
+                }
+            }
+        }
+        
+        // حذف ویژگی
+        function removeFeature(element) {
+            element.parentElement.remove();
+        }
+        
+        // ریست فرم
+        function resetForm() {
+            if (confirm('آیا از لغو فرم اطمینان دارید؟')) {
+                document.getElementById('productName').value = '';
+                document.getElementById('originalPrice').value = '';
+                document.getElementById('finalPrice').value = '';
+                document.getElementById('productQuantity').value = '';
+                document.getElementById('productDescription').value = '';
+                document.getElementById('productFeatures').value = '';
+                document.getElementById('featuresContainer').innerHTML = '';
+                document.getElementById('discountPercentage').textContent = '0%';
+                document.getElementById('discountAmount').textContent = '0 تومان';
+                document.getElementById('payablePrice').textContent = '0 تومان';
+                document.getElementById('inStock').checked = true;
+                document.getElementById('stockStatus').textContent = 'موجود';
+            }
+        }
+        
+        // ارسال فرم
+        function submitForm() {
+            const productName = document.getElementById('productName').value;
+            const originalPrice = document.getElementById('originalPrice').value;
+            const quantity = document.getElementById('productQuantity').value;
+            
+            if (!productName || !originalPrice || !quantity) {
+                alert('لطفا فیلدهای ضروری را پر کنید!');
+                return;
+            }
+            
+            // جمع‌آوری داده‌ها
+            const productData = {
+                name: productName,
+                originalPrice: parseFloat(originalPrice),
+                finalPrice: parseFloat(document.getElementById('finalPrice').value),
+                quantity: parseInt(quantity),
+                inStock: document.getElementById('inStock').checked,
+                description: document.getElementById('productDescription').value,
+                features: Array.from(document.querySelectorAll('.tag')).map(tag => tag.textContent.replace('×', '').trim())
+            };
+            
+            console.log('داده‌های محصول:', productData);
+            alert('محصول با موفقیت ثبت شد!');
+            resetForm();
+        }
+        
+        // شبیه‌سازی آپلود تصویر
+        document.querySelectorAll('.main-image, .gallery-item').forEach(item => {
+            item.addEventListener('click', function() {
+                const input = document.createElement('input');
+                input.type = 'file';
+                input.accept = 'image/*';
+                input.onchange = function(e) {
+                    const file = e.target.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            if (this.id === 'mainImageUpload') {
+                                const img = this.querySelector('img');
+                                img.src = e.target.result;
+                                img.style.display = 'block';
+                                this.querySelector('.main-image-placeholder').style.display = 'none';
+                            } else {
+                                const img = this.querySelector('img');
+                                img.src = e.target.result;
+                                img.style.display = 'block';
+                                this.querySelector('.gallery-placeholder').style.display = 'none';
+                            }
+                        }.bind(this);
+                        reader.readAsDataURL(file);
+                    }
+                };
+                input.click();
+            });
+        });
+    </script>
+</body>
+</html>
+

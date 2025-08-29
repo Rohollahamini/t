@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>درباره ما | عطرستان</title>
+    <meta name="description" content="درباره عطرستان - فروشگاه آنلاین عطر با بهترین برندهای دنیا">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="styles.css" as="style">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" as="style">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Prevent FOUC -->
+    <style>
+        body {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+        body.loaded {
+            opacity: 1;
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.3s ease-in-out;
+        }
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #3b82f6;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loadingScreen">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <!-- Top Bar -->
+        <div class="top-bar">
+            <div class="container">
+                <div class="top-bar-content">
+                    <div class="top-bar-left">
+                        <span>ارسال رایگان برای خرید بالای ۵۰۰ هزار تومان</span>
+                        <span>ضمانت اصالت کالا</span>
+                    </div>
+                    <div class="top-bar-right">
+                        <span>پشتیبانی: ۰۲۱-۱۲۳۴۵۶۷۸</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <!-- Navigation moved to top -->
+                <nav class="navigation">
+                    <div class="nav-content">
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link">خانه</a>
+                            <a href="about.html" class="nav-link active">درباره ما</a>
+                            <a href="articles.html" class="nav-link">مقاله‌ها</a>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="header-content">
+                    <!-- Logo -->
+                    <div class="logo">
+                        <h1>عطرستان</h1>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="header-actions">
+                        <button class="action-btn theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="action-btn cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge" id="cartCount">0</span>
+                        </button>
+                        <button class="action-btn user-btn">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div class="container">
+            <div class="about-hero-content">
+                <h1 class="about-hero-title">درباره عطرستان</h1>
+                <p class="about-hero-subtitle">ما متعهد به ارائه بهترین عطرهای دنیا با کیفیت و قیمت مناسب هستیم</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-text">
+                    <h2>داستان ما</h2>
+                    <p>عطرستان در سال ۱۴۰۰ با هدف ارائه بهترین عطرهای دنیا به مشتریان ایرانی تأسیس شد. ما معتقدیم که عطر فقط یک محصول نیست، بلکه بیانگر شخصیت و سبک زندگی هر فرد است.</p>
+                    
+                    <h3>ماموریت ما</h3>
+                    <p>ماموریت ما ارائه عطرهای اصل و با کیفیت از معتبرترین برندهای دنیا با قیمت‌های مناسب و خدمات پس از فروش عالی است. ما متعهد به رضایت کامل مشتریان خود هستیم.</p>
+                    
+                    <h3>چشم‌انداز ما</h3>
+                    <p>می‌خواهیم به عنوان پیشگام در صنعت فروش آنلاین عطر در ایران شناخته شویم و استانداردهای جدیدی برای کیفیت و خدمات مشتریان تعریف کنیم.</p>
+                </div>
+                
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <div class="stat-number">۵۰,۰۰۰+</div>
+                        <div class="stat-label">مشتری راضی</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-shipping-fast"></i>
+                        </div>
+                        <div class="stat-number">۱۰۰۰+</div>
+                        <div class="stat-label">ارسال روزانه</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <div class="stat-number">۴.۹</div>
+                        <div class="stat-label">امتیاز مشتریان</div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-award"></i>
+                        </div>
+                        <div class="stat-number">۱۵+</div>
+                        <div class="stat-label">برند معتبر</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">ارزش‌های ما</h2>
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>کیفیت</h3>
+                    <p>تمام محصولات ما اصل و دارای گارانتی اصالت هستند. ما کیفیت را بر هر چیز دیگری ترجیح می‌دهیم.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>مشتری‌مداری</h3>
+                    <p>رضایت مشتریان اولویت اول ماست. ما همیشه آماده کمک و راهنمایی مشتریان خود هستیم.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-rocket"></i>
+                    </div>
+                    <h3>سرعت</h3>
+                    <p>ارسال سریع و به موقع محصولات یکی از تعهدات ماست. ما می‌خواهیم تجربه خرید رضایت‌بخشی ارائه دهیم.</p>
+                </div>
+                
+                <div class="value-card">
+                    <div class="value-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>اعتماد</h3>
+                    <p>ما با شفافیت کامل کار می‌کنیم و تمام اطلاعات محصولات را به صورت دقیق ارائه می‌دهیم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">تیم ما</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-avatar">ع</div>
+                    <h3>علی احمدی</h3>
+                    <p class="member-role">مدیرعامل</p>
+                    <p class="member-desc">بیش از ۱۰ سال تجربه در صنعت عطر و لوازم آرایشی</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">ف</div>
+                    <h3>فاطمه کریمی</h3>
+                    <p class="member-role">مدیر فروش</p>
+                    <p class="member-desc">متخصص در روابط با مشتریان و خدمات پس از فروش</p>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-avatar">م</div>
+                    <h3>محمد رضایی</h3>
+                    <p class="member-role">مدیر فنی</p>
+                    <p class="member-desc">متخصص در زمینه‌های فنی و امنیت سیستم</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="contact-info-section">
+        <div class="container">
+            <h2 class="section-title">اطلاعات تماس</h2>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>آدرس</h3>
+                        <p>تهران، خیابان ولیعصر، پلاک ۱۲۳</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>تلفن</h3>
+                        <p>۰۲۱-۱۲۳۴۵۶۷۸</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>ایمیل</h3>
+                        <p>info@atrestan.com</p>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>ساعات کاری</h3>
+                        <p>شنبه تا چهارشنبه: ۹ صبح تا ۸ شب</p>
+                        <p>پنجشنبه: ۹ صبح تا ۶ عصر</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>عطرستان</h3>
+                    <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h4>دسترسی سریع</h4>
+                    <ul>
+                        <li><a href="index.html">خانه</a></li>
+                        <li><a href="about.html">درباره ما</a></li>
+                        <li><a href="articles.html">مقاله‌ها</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>خدمات مشتریان</h4>
+                    <ul>
+                        <li><a href="#">راهنمای خرید</a></li>
+                        <li><a href="#">شرایط بازگشت</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                        <li><a href="#">تماس با ما</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>اطلاعات تماس</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>info@atrestan.com</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>تهران، خیابان ولیعصر</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <div class="copyright">
+                    © ۱۴۰۲ عطرستان. تمامی حقوق محفوظ است.
+                </div>
+                <div class="footer-links">
+                    <a href="#">حریم خصوصی</a>
+                    <a href="#">قوانین استفاده</a>
+                    <a href="#">نقشه سایت</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>سبد خرید</h3>
+            <button class="close-cart" id="closeCart">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <!-- Cart items will be loaded here -->
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>مجموع:</span>
+                <span id="cartTotal">۰ تومان</span>
+            </div>
+            <button class="checkout-btn">نهایی کردن خرید</button>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+
+    <!-- Notification -->
+    <div class="notification" id="notification">
+        <span id="notificationText"></span>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js" defer></script>
+    <script>
+        // Prevent FOUC and handle loading
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hide loading screen and show content
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Fallback if DOMContentLoaded doesn't fire
+        window.addEventListener('load', function() {
+            const loadingScreen = document.getElementById('loadingScreen');
+            const body = document.body;
+            
+            if (loadingScreen) {
+                loadingScreen.classList.add('hidden');
+                setTimeout(() => {
+                    loadingScreen.style.display = 'none';
+                }, 300);
+            }
+            
+            body.classList.add('loaded');
+        });
+        
+        // Error handling for failed resources
+        window.addEventListener('error', function(e) {
+            console.error('Resource failed to load:', e.target.src || e.target.href);
+        });
+    </script>
+</body>
+</html>
