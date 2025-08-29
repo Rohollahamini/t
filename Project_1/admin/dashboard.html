@@ -14,6 +14,9 @@
   
 <body>
   <div class="layout">
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    
     <main class="main">
       <header class="topbar">
         <div class="topbar-left">
@@ -65,16 +68,7 @@
                   <div class="card-change">نسخه نمایشی</div>
                 </div>
               </div>
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-users"></i>
-                </div>
-                <div class="card-content">
-                  <div class="card-title">کاربران فعال</div>
-                  <div class="card-value" id="statUsers">—</div>
-                  <div class="card-change">نسخه نمایشی</div>
-                </div>
-              </div>
+
             </div>
 
             <div class="dashboard-grid">
@@ -100,37 +94,9 @@
               </div>
             </div>
 
-            <div class="panel">
-              <div class="panel-header">
-                <h3>اقدامات سریع</h3>
-              </div>
-              <div class="quick-actions">
-                <button class="btn btn-secondary" id="exportProducts">
-                  <i class="fa-solid fa-file-export"></i> 
-                  خروجی محصولات
-                </button>
-                <label class="btn btn-secondary" for="importProductsInput">
-                  <i class="fa-solid fa-file-import"></i> 
-                  ورودی محصولات
-                </label>
-                <input type="file" id="importProductsInput" accept="application/json" style="display:none" />
-                <button class="btn btn-secondary" id="generateReport">
-                  <i class="fa-solid fa-chart-bar"></i> 
-                  گزارش فروش
-                </button>
-              </div>
-            </div>
 
-            <div class="recent-activity">
-              <div class="panel">
-                <div class="panel-header">
-                  <h3>فعالیت‌های اخیر</h3>
-                </div>
-                <div class="activity-list" id="activityList">
-                  <!-- Activity items will be populated by JavaScript -->
-                </div>
-              </div>
-            </div>
+
+
           </section>
 
           <section id="section-products" class="section">
@@ -257,31 +223,7 @@
                   <button class="btn btn-primary">ذخیره تنظیمات</button>
                 </div>
               </div>
-              <div class="panel">
-                <div class="panel-header">
-                  <h3>تنظیمات اعلان‌ها</h3>
-                </div>
-                <div class="notification-settings">
-                  <div class="setting-item">
-                    <label>
-                      <input type="checkbox" checked />
-                      اعلان سفارش‌های جدید
-                    </label>
-                  </div>
-                  <div class="setting-item">
-                    <label>
-                      <input type="checkbox" checked />
-                      اعلان موجودی کم
-                    </label>
-                  </div>
-                  <div class="setting-item">
-                    <label>
-                      <input type="checkbox" />
-                      گزارش روزانه فروش
-                    </label>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </section>
         </div>

@@ -478,15 +478,28 @@ function performSearch(searchTerm) {
 function initThemeToggle() {
     const themeToggle = document.getElementById('themeToggle');
     if (themeToggle) {
+        // Load saved theme preference
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme === 'dark') {
+            document.body.classList.add('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            icon.classList.remove('fa-moon');
+            icon.classList.add('fa-sun');
+        }
+        
         themeToggle.addEventListener('click', function() {
             document.body.classList.toggle('dark-mode');
             const icon = this.querySelector('i');
-            if (document.body.classList.contains('dark-mode')) {
+            const isDark = document.body.classList.contains('dark-mode');
+            
+            if (isDark) {
                 icon.classList.remove('fa-moon');
                 icon.classList.add('fa-sun');
+                localStorage.setItem('theme', 'dark');
             } else {
                 icon.classList.remove('fa-sun');
                 icon.classList.add('fa-moon');
+                localStorage.setItem('theme', 'light');
             }
         });
     }
