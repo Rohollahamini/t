@@ -347,7 +347,7 @@ function initializeModal() {
   
   if(addProductBtn) addProductBtn.addEventListener('click', ()=> {
     window.location.href = 'product-form.html';
-  });
+    });
 }
 
 function openProductModal(id){

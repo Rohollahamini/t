@@ -1,206 +1,260 @@
-<!DOCTYPE html>
-<html lang="fa" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>تست بارگذاری - عطرستان</title>
-    <style>
-        body {
-            font-family: 'Vazirmatn', sans-serif;
-            margin: 0;
-            padding: 20px;
-            background: #f8f9fa;
-            direction: rtl;
-        }
-        .test-container {
-            max-width: 800px;
-            margin: 0 auto;
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        .status {
-            padding: 10px;
-            margin: 10px 0;
-            border-radius: 4px;
-        }
-        .success { background: #d4edda; color: #155724; }
-        .error { background: #f8d7da; color: #721c24; }
-        .info { background: #d1ecf1; color: #0c5460; }
-        .warning { background: #fff3cd; color: #856404; }
-        .test-section {
-            margin: 20px 0;
-            padding: 15px;
-            border: 1px solid #dee2e6;
-            border-radius: 8px;
-        }
-        .test-section h3 {
-            margin-top: 0;
-            color: #495057;
-        }
-        .page-links {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin: 15px 0;
-        }
-        .page-link {
-            display: block;
-            padding: 10px 15px;
-            background: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 4px;
-            text-align: center;
-            transition: background 0.3s;
-        }
-        .page-link:hover {
-            background: #0056b3;
-        }
-        .performance-test {
-            background: #f8f9fa;
-            padding: 10px;
-            border-radius: 4px;
-            margin: 10px 0;
-        }
-    </style>
-</head>
-<body>
-    <div class="test-container">
-        <h1>تست کامل سایت عطرستان</h1>
-        
-        <div class="test-section">
-            <h3>✅ بهبودهای اعمال شده:</h3>
-            <ul>
-                <li><strong>جلوگیری از FOUC:</strong> اسکرین لودینگ و preload links</li>
-                <li><strong>بهبود بارگذاری:</strong> defer attribute برای JavaScript</li>
-                <li><strong>ریسپانسیو موبایل:</strong> تمام صفحات بهینه شده‌اند</li>
-                <li><strong>جستجوی موبایل:</strong> مشکل جستجوی تکراری حل شده</li>
-                <li><strong>تصاویر دمو:</strong> img.png برای همه محصولات</li>
-                <li><strong>تب‌های محصول:</strong> نظرات، مشخصات و سوالات کار می‌کنند</li>
-            </ul>
-        </div>
-
-        <div class="test-section">
-            <h3>🔍 بررسی فایل‌ها:</h3>
-            <div id="fileStatus"></div>
-        </div>
-
-        <div class="test-section">
-            <h3>📱 تست ریسپانسیو:</h3>
-            <div class="performance-test">
-                <strong>نکات مهم برای تست:</strong>
-                <ul>
-                    <li>صفحه را در اندازه‌های مختلف مرورگر تست کنید</li>
-                    <li>در موبایل، جستجو باید فقط یک بار نمایش داده شود</li>
-                    <li>محصولات باید در یک ستون نمایش داده شوند</li>
-                    <li>دکمه‌ها باید اندازه مناسب برای لمس داشته باشند</li>
-                    <li>تب‌ها در صفحه جزئیات محصول باید کار کنند</li>
-                </ul>
-            </div>
-        </div>
-
-        <div class="test-section">
-            <h3>🚀 دسترسی به صفحات:</h3>
-            <div class="page-links">
-                <a href="index.html" class="page-link">صفحه اصلی</a>
-                <a href="about.html" class="page-link">درباره ما</a>
-                <a href="articles.html" class="page-link">مقاله‌ها</a>
-                <a href="product-detail.html" class="page-link">جزئیات محصول</a>
-            </div>
-        </div>
-
-        <div class="test-section">
-            <h3>⚠️ نکات مهم:</h3>
-            <div class="status warning">
-                <strong>برای بهترین نتیجه:</strong>
-                <ul>
-                    <li>کش مرورگر را پاک کنید (Ctrl+F5)</li>
-                    <li>در حالت incognito تست کنید</li>
-                    <li>کنسول مرورگر را بررسی کنید تا خطاها را ببینید</li>
-                    <li>فایل img.png را در پوشه پروژه قرار دهید</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Test if files are accessible
-        const files = [
-            'index.html', 
-            'about.html', 
-            'articles.html', 
-            'product-detail.html',
-            'styles.css', 
-            'script.js',
-            'product-detail.js',
-            'articles.js'
-        ];
-        const fileStatusDiv = document.getElementById('fileStatus');
-        
-        async function testFiles() {
-            let results = [];
-            let successCount = 0;
-            let errorCount = 0;
-            
-            for (let file of files) {
-                try {
-                    const response = await fetch(file);
-                    if (response.ok) {
-                        results.push(`✅ ${file} - قابل دسترس`);
-                        successCount++;
-                    } else {
-                        results.push(`❌ ${file} - خطا: ${response.status}`);
-                        errorCount++;
-                    }
-                } catch (error) {
-                    results.push(`❌ ${file} - خطا: ${error.message}`);
-                    errorCount++;
-                }
-            }
-            
-            const statusClass = errorCount === 0 ? 'success' : 'error';
-            const statusText = errorCount === 0 ? 
-                `همه فایل‌ها قابل دسترس هستند (${successCount}/${files.length})` :
-                `${errorCount} فایل مشکل دارد (${successCount}/${files.length} موفق)`;
-            
-            fileStatusDiv.innerHTML = `
-                <div class="status ${statusClass}">
-                    <strong>${statusText}</strong><br>
-                    ${results.join('<br>')}
+<div id="sidebar" class="sidebar-wrap col-12 col-sm-12 col-md-12 col-lg-3 clearfix" role="complementary" itemscope="" itemtype="https://schema.org/WPSideBar"><div class="sidebar-inner"><aside id="woocommerce_price_filter-4" class="widget woocommerce widget_price_filter"><div class="widget_title">فیلتر براساس قیمت:</div><div class="widget-content">
+    <form method="get" action="https://atrchee.com/productbrands/zassari/">
+        <div class="price_slider_wrapper">
+            <div class="price_slider ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content" style=""><div class="ui-slider-range ui-corner-all ui-widget-header" style="left: 0%; width: 100%;"></div><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 0%;"></span><span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default" style="left: 100%;"></span></div>
+            <div class="price_slider_amount" data-step="10">
+                <label class="screen-reader-text" for="min_price">حداقل قیمت</label>
+                <input type="text" id="min_price" name="min_price" value="20000" data-min="20000" placeholder="حداقل قیمت" style="display: none;">
+                <label class="screen-reader-text" for="max_price">حداكثر قيمت</label>
+                <input type="text" id="max_price" name="max_price" value="10800000" data-max="10800000" placeholder="حداكثر قيمت" style="display: none;">
+                            <button type="submit" class="button" style="display: inline-block;">صافی</button>
+                <div class="price_label" style="">
+                    قيمت: <span class="from">20,000&nbsp;تومان</span> — <span class="to">10,800,000&nbsp;تومان</span>
                 </div>
-            `;
-        }
-        
-        // Test page loading performance
-        function testPerformance() {
-            const startTime = performance.now();
-            
-            // Simulate page load
-            setTimeout(() => {
-                const endTime = performance.now();
-                const loadTime = endTime - startTime;
-                
-                console.log(`Page load time: ${loadTime.toFixed(2)}ms`);
-                
-                if (loadTime < 1000) {
-                    console.log('✅ Page loads quickly');
-                } else {
-                    console.log('⚠️ Page load time could be improved');
-                }
-            }, 100);
-        }
-        
-        // Run tests
-        testFiles();
-        testPerformance();
-        
-        // Add performance monitoring
-        window.addEventListener('load', function() {
-            const loadTime = performance.timing.loadEventEnd - performance.timing.navigationStart;
-            console.log(`Total page load time: ${loadTime}ms`);
-        });
-    </script>
-</body>
-</html> 
+                            <div class="clear"></div>
+            </div>
+        </div>
+    </form>
+    
+    </div></aside><aside id="yith-woo-ajax-navigation-12" class="widget yith-woocommerce-ajax-product-filter yith-woo-ajax-navigation woocommerce widget_layered_nav"><div class="widget_title">طبع عطر</div><div class="widget-content"><ul class="yith-wcan-label yith-wcan yith-wcan-group "><li><a title="خنک" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_nature=cold">خنک</a></li><li><a title="گرم" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_nature=warm">گرم</a></li><li><a title="معتدل" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_nature=mild">معتدل</a></li></ul></div></aside><aside id="yith-woo-ajax-navigation-9" class="widget yith-woocommerce-ajax-product-filter yith-woo-ajax-navigation woocommerce widget_layered_nav"><div class="widget_title">طعم عطر</div><div class="widget-content"><ul class="yith-wcan-label yith-wcan yith-wcan-group "><li><a title="ادویه ای" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=spice">ادویه ای</a></li><li><a title="پودری" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=powdery">پودری</a></li><li><a title="تلخ" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=bitter">تلخ</a></li><li><a title="تند" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=spicy">تند</a></li><li><a title="چرمی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=leather">چرمی</a></li><li><a title="چوبی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=woody">چوبی</a></li><li><a title="دودی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=smoky">دودی</a></li><li><a title="شرقی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=eastern">شرقی</a></li><li><a title="شیرین" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=sweet">شیرین</a></li><li><a title="فرش" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=ferash">فرش</a></li><li><a title="گلی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=flower">گلی</a></li><li><a title="مرکباتی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=citrus">مرکباتی</a></li><li><a title="میوه ای" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=fruity">میوه ای</a></li><li><a title="وانیلی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=vanilla">وانیلی</a></li><li><a title="مُشکی" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_taste=مُشکی">مُشکی</a></li></ul></div></aside><aside id="yith-woo-ajax-navigation-10" class="widget yith-woocommerce-ajax-product-filter yith-woo-ajax-navigation woocommerce widget_layered_nav"><div class="widget_title">غلظت</div><div class="widget-content"><ul class="yith-wcan-label yith-wcan yith-wcan-group "><li><a title="پارفوم" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_density=perfume&amp;query_type_density=or">پارفوم</a></li><li><a title="ادوپرفیوم" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_density=edp&amp;query_type_density=or">ادوپرفیوم</a></li><li><a title="پرفیوم" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_density=parfum&amp;query_type_density=or">پرفیوم</a></li></ul></div></aside><aside id="yith-woo-ajax-navigation-11" class="widget yith-woocommerce-ajax-product-filter yith-woo-ajax-navigation woocommerce widget_layered_nav"><div class="widget_title">جنسیت</div><div class="widget-content"><ul class="yith-wcan-label yith-wcan yith-wcan-group "><li><a title="زنانه" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_gender=woman&amp;query_type_gender=or">زنانه</a></li><li><a title="مردانه" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_gender=man&amp;query_type_gender=or">مردانه</a></li><li><a title="مردانه/زنانه" href="https://atrchee.com/shop/?source_id=2259&amp;source_tax=pwb-brand&amp;pwb-brand=zassari&amp;filter_gender=uni&amp;query_type_gender=or">مردانه/زنانه</a></li></ul></div></aside><aside id="woocommerce_product_categories-3" class="widget woocommerce widget_product_categories"><div class="widget_title">دسته های محصولات</div><div class="widget-content"><ul class="product-categories"><li class="cat-item cat-item-2279"><a href="https://atrchee.com/makeup/">آرایشی</a></li>
+    <li class="cat-item cat-item-495"><a href="https://atrchee.com/body-mist/">بادی میست</a></li>
+    <li class="cat-item cat-item-2219"><a href="https://atrchee.com/blackfriday/">بلک فرایدی</a></li>
+    <li class="cat-item cat-item-2258"><a href="https://atrchee.com/decant-pack/">پک‌های دکانت</a></li>
+    <li class="cat-item cat-item-404"><a href="https://atrchee.com/uncategorized/">دسته بندی نشده</a></li>
+    <li class="cat-item cat-item-492"><a href="https://atrchee.com/decant/">دکانت</a></li>
+    <li class="cat-item cat-item-493"><a href="https://atrchee.com/samples/">سمپل</a></li>
+    <li class="cat-item cat-item-489"><a href="https://atrchee.com/women-perfume/">عطر زنانه</a></li>
+    <li class="cat-item cat-item-488"><a href="https://atrchee.com/men-perfume/">عطر مردانه</a></li>
+    <li class="cat-item cat-item-490"><a href="https://atrchee.com/economic-perfume/">عطرهای اقتصادی</a></li>
+    <li class="cat-item cat-item-2131"><a href="https://atrchee.com/pocket-perfume/">عطرهای جیبی</a></li>
+    <li class="cat-item cat-item-491"><a href="https://atrchee.com/niche-perfume/">عطرهای نیش</a></li>
+    <li class="cat-item cat-item-2145"><a href="https://atrchee.com/%d8%b9%d8%b7%d8%b1%d9%87%d8%a7%db%8c-%d9%88%d8%b1%d8%b3%d8%a7%db%8c/">عطرهای ورسای</a></li>
+    <li class="cat-item cat-item-494"><a href="https://atrchee.com/miniatures/">مینیاتوری</a></li>
+    </ul></div></aside></div></div>
+
+
+    <style>
+    :root {
+    /* متغیرهای شما */
+    --maincolor: #84439B;
+    --secondcolor: #474747;
+    --bgcolor: #FBFBF9;
+    --mainfont: IRANSansnum, sans-serif;
+    --borderradius: 7px;
+    --wp--preset--font-size--normal: 16px;
+    --wp--preset--font-size--huge: 42px;
+    --wp-admin-theme-color: #3858e9;
+    --wp-admin-theme-color-darker-10: #2145e6;
+    --wp-admin-theme-color-darker-20: #183ad6;
+    --cartcolor: #23bf53;
+    --headcolor: #ffffff;
+    --footcolor: #222332;
+    --foottxcolor: #ffffff;
+    --wp--preset--shadow--natural: 6px 6px 9px rgba(0, 0, 0, 0.2);
+    --wp--preset--shadow--deep: 12px 12px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* بدنه صفحه */
+body {
+    background-color: var(--bgcolor);
+    font-family: var(--mainfont);
+    font-size: var(--wp--preset--font-size--normal);
+    color: var(--secondcolor);
+    direction: rtl;
+    margin: 0;
+    padding: 1rem 2rem;
+    line-height: 1.6;
+}
+
+/* تیترها */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--maincolor);
+    margin-top: 0;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, var(--wp--preset--font-size--huge));
+}
+
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+/* پاراگراف */
+p {
+    margin-bottom: 1rem;
+}
+
+/* لینک‌ها */
+a {
+    color: var(--maincolor);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover,
+a:focus {
+    color: var(--wp-admin-theme-color-darker-10);
+    text-decoration: underline;
+    outline: none;
+}
+
+/* دکمه‌ها */
+button, .btn {
+    background-color: var(--wp-admin-theme-color);
+    color: var(--headcolor);
+    border: none;
+    border-radius: var(--borderradius);
+    padding: 0.6rem 1.5rem;
+    font-size: var(--wp--preset--font-size--normal);
+    cursor: pointer;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: var(--wp--preset--shadow--natural);
+    user-select: none;
+}
+
+button:hover, .btn:hover,
+button:focus, .btn:focus {
+    background-color: var(--wp-admin-theme-color-darker-10);
+    box-shadow: var(--wp--preset--shadow--deep);
+    outline: none;
+}
+
+/* فرم‌ها */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+textarea,
+select {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: var(--wp--preset--font-size--normal);
+    border: 1.5px solid var(--secondcolor);
+    border-radius: var(--borderradius);
+    background-color: var(--headcolor);
+    color: var(--secondcolor);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    box-sizing: border-box;
+    font-family: var(--mainfont);
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--wp-admin-theme-color);
+    box-shadow: 0 0 5px var(--wp-admin-theme-color);
+    outline: none;
+}
+
+/* کارت‌ها */
+.card {
+    background-color: var(--headcolor);
+    border-radius: var(--borderradius);
+    box-shadow: var(--wp--preset--shadow--natural);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--secondcolor);
+    transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+    box-shadow: var(--wp--preset--shadow--deep);
+}
+
+/* ناوبری */
+nav.main-nav {
+    background-color: var(--maincolor);
+    padding: 0.75rem 1rem;
+    border-radius: var(--borderradius);
+    margin-bottom: 2rem;
+}
+
+nav.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+nav.main-nav ul li a {
+    color: var(--headcolor);
+    font-weight: 600;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: var(--borderradius);
+    transition: background-color 0.3s ease;
+}
+
+nav.main-nav ul li a:hover,
+nav.main-nav ul li a:focus {
+    background-color: var(--wp-admin-theme-color-darker-10);
+    outline: none;
+}
+
+/* جدول */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+    font-family: var(--mainfont);
+}
+
+table th,
+table td {
+    border: 1px solid var(--secondcolor);
+    padding: 0.75rem 1rem;
+    text-align: center;
+}
+
+table th {
+    background-color: var(--maincolor);
+    color: var(--headcolor);
+    font-weight: 600;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* فوتر */
+footer {
+    background-color: var(--footcolor);
+    color: var(--foottxcolor);
+    text-align: center;
+    padding: 1.5rem 1rem;
+    border-radius: var(--borderradius);
+    font-size: 0.9rem;
+    user-select: none;
+}
+
+/* ریسپانسیو */
+@media (max-width: 768px) {
+    body {
+        padding: 1rem;
+        font-size: 14px;
+    }
+
+    nav.main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    nav.main-nav ul li a {
+        padding: 0.5rem;
+        text-align: center;
+    }
+}
+
+
+    </style>

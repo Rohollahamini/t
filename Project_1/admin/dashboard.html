@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>داشبورد مدیریت | عطرستان</title>
-    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="admin.css" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>داشبورد مدیریت | عطرستان</title>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="admin.css" />
     <!-- اضافه کردن فونت آوسام -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  </head>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
   
 <body>
   <div class="layout">
@@ -35,194 +35,194 @@
 
       <div class="content-wrapper">
         <div class="content">
-          <section id="section-dashboard" class="section active">
-            <h2>نمای کلی</h2>
-            <div class="cards">
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-box"></i>
-                </div>
-                <div class="card-content">
-                  <div class="card-title">تعداد محصولات</div>
-                  <div class="card-value" id="statProducts">0</div>
-                  <div class="card-change positive">+12% از ماه گذشته</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-receipt"></i>
-                </div>
-                <div class="card-content">
-                  <div class="card-title">سفارش‌های امروز</div>
-                  <div class="card-value" id="statOrders">—</div>
-                  <div class="card-change">نسخه نمایشی</div>
-                </div>
-              </div>
-              <div class="card">
-                <div class="card-icon">
-                  <i class="fa-solid fa-money-bill-wave"></i>
-                </div>
-                <div class="card-content">
-                  <div class="card-title">فروش امروز</div>
-                  <div class="card-value" id="statSales">—</div>
-                  <div class="card-change">نسخه نمایشی</div>
-                </div>
-              </div>
-
+      <section id="section-dashboard" class="section active">
+        <h2>نمای کلی</h2>
+        <div class="cards">
+          <div class="card">
+            <div class="card-icon">
+              <i class="fa-solid fa-box"></i>
             </div>
+            <div class="card-content">
+              <div class="card-title">تعداد محصولات</div>
+              <div class="card-value" id="statProducts">0</div>
+              <div class="card-change positive">+12% از ماه گذشته</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fa-solid fa-receipt"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">سفارش‌های امروز</div>
+              <div class="card-value" id="statOrders">—</div>
+              <div class="card-change">نسخه نمایشی</div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-icon">
+              <i class="fa-solid fa-money-bill-wave"></i>
+            </div>
+            <div class="card-content">
+              <div class="card-title">فروش امروز</div>
+              <div class="card-value" id="statSales">—</div>
+              <div class="card-change">نسخه نمایشی</div>
+            </div>
+          </div>
 
-            <div class="dashboard-grid">
-              <div class="panel chart-panel">
-                <div class="panel-header">
-                  <h3>آمار کلی</h3>
-                  <div class="chart-info">
-                    <span>تعداد محصولات در طول زمان</span>
-                  </div>
-                </div>
-                <div class="chart-container">
-                  <canvas id="statsChart"></canvas>
-                </div>
-              </div>
+        </div>
 
-              <div class="panel chart-panel">
-                <div class="panel-header">
-                  <h3>توزیع محصولات</h3>
-                </div>
-                <div class="chart-container">
-                  <canvas id="productsChart"></canvas>
-                </div>
+        <div class="dashboard-grid">
+          <div class="panel chart-panel">
+            <div class="panel-header">
+              <h3>آمار کلی</h3>
+              <div class="chart-info">
+                <span>تعداد محصولات در طول زمان</span>
               </div>
             </div>
-
-
-
-
-          </section>
-
-          <section id="section-products" class="section">
-            <div class="section-header">
-              <h2>مدیریت محصولات</h2>
-              <button class="btn btn-primary" id="addProductBtn">
-                <i class="fa-solid fa-plus"></i> 
-                محصول جدید
-              </button>
+            <div class="chart-container">
+              <canvas id="statsChart"></canvas>
             </div>
-            <div class="panel">
-              <div class="table-tools">
-                <input type="text" id="productSearch" placeholder="جستجو در محصولات..." />
-                <select id="productCategoryFilter">
-                  <option value="all">همه دسته‌ها</option>
-                  <option value="men">مردانه</option>
-                  <option value="women">زنانه</option>
-                  <option value="unisex">یونیسکس</option>
-                </select>
-                <select id="productStatusFilter">
-                  <option value="all">همه وضعیت‌ها</option>
-                  <option value="true">موجود</option>
-                  <option value="false">ناموجود</option>
-                </select>
-              </div>
-              <div class="table-wrapper">
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th>تصویر</th>
-                      <th>نام</th>
-                      <th>برند</th>
-                      <th>قیمت</th>
-                      <th>دسته</th>
-                      <th>موجودی</th>
-                      <th>امتیاز</th>
-                      <th>عملیات</th>
-                    </tr>
-                  </thead>
-                  <tbody id="productsTbody"></tbody>
-                </table>
-              </div>
-            </div>
-          </section>
+          </div>
 
-          <section id="section-orders" class="section">
-            <h2>سفارش‌ها</h2>
-            <div class="placeholder">
-              <i class="fa-solid fa-receipt" style="font-size: 3rem; color: #3b82f6; margin-bottom: 1rem;"></i>
-              <h3>مدیریت سفارش‌ها</h3>
-              <p>این بخش با بک‌اند همکارتان تکمیل می‌شود.</p>
-              <div class="demo-orders">
-                <div class="demo-order">
-                  <div class="order-status pending">در انتظار</div>
-                  <div class="order-info">
-                    <strong>سفارش #1234</strong>
-                    <span>عطر مردانه دیور - 2 عدد</span>
-                    <span>850,000 تومان</span>
-                  </div>
-                </div>
-                <div class="demo-order">
-                  <div class="order-status completed">تکمیل شده</div>
-                  <div class="order-info">
-                    <strong>سفارش #1233</strong>
-                    <span>عطر زنانه شنل - 1 عدد</span>
-                    <span>1,200,000 تومان</span>
-                  </div>
-                </div>
-              </div>
+          <div class="panel chart-panel">
+            <div class="panel-header">
+              <h3>توزیع محصولات</h3>
             </div>
-          </section>
-
-          <section id="section-users" class="section">
-            <h2>کاربران</h2>
-            <div class="placeholder">
-              <i class="fa-solid fa-users" style="font-size: 3rem; color: #3b82f6; margin-bottom: 1rem;"></i>
-              <h3>مدیریت کاربران</h3>
-              <p>این بخش با بک‌اند همکارتان تکمیل می‌شود.</p>
+            <div class="chart-container">
+              <canvas id="productsChart"></canvas>
             </div>
-          </section>
+          </div>
+        </div>
 
-          <section id="section-analytics" class="section">
-            <h2>تحلیل‌ها</h2>
-            <div class="analytics-grid">
-              <div class="panel chart-panel">
-                <div class="panel-header">
-                  <h3>تحلیل فروش ماهانه</h3>
-                </div>
-                <div class="chart-container">
-                  <canvas id="monthlyChart"></canvas>
-                </div>
-              </div>
-              <div class="panel chart-panel">
-                <div class="panel-header">
-                  <h3>توزیع دسته‌بندی محصولات</h3>
-                </div>
-                <div class="chart-container">
-                  <canvas id="categoryChart"></canvas>
-                </div>
+
+
+
+      </section>
+
+      <section id="section-products" class="section">
+        <div class="section-header">
+          <h2>مدیریت محصولات</h2>
+          <button class="btn btn-primary" id="addProductBtn">
+            <i class="fa-solid fa-plus"></i> 
+            محصول جدید
+          </button>
+        </div>
+        <div class="panel">
+          <div class="table-tools">
+            <input type="text" id="productSearch" placeholder="جستجو در محصولات..." />
+            <select id="productCategoryFilter">
+              <option value="all">همه دسته‌ها</option>
+              <option value="men">مردانه</option>
+              <option value="women">زنانه</option>
+              <option value="unisex">یونیسکس</option>
+            </select>
+            <select id="productStatusFilter">
+              <option value="all">همه وضعیت‌ها</option>
+              <option value="true">موجود</option>
+              <option value="false">ناموجود</option>
+            </select>
+          </div>
+          <div class="table-wrapper">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>تصویر</th>
+                  <th>نام</th>
+                  <th>برند</th>
+                  <th>قیمت</th>
+                  <th>دسته</th>
+                  <th>موجودی</th>
+                  <th>امتیاز</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="productsTbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-orders" class="section">
+        <h2>سفارش‌ها</h2>
+        <div class="placeholder">
+          <i class="fa-solid fa-receipt" style="font-size: 3rem; color: #3b82f6; margin-bottom: 1rem;"></i>
+          <h3>مدیریت سفارش‌ها</h3>
+          <p>این بخش با بک‌اند همکارتان تکمیل می‌شود.</p>
+          <div class="demo-orders">
+            <div class="demo-order">
+              <div class="order-status pending">در انتظار</div>
+              <div class="order-info">
+                <strong>سفارش #1234</strong>
+                <span>عطر مردانه دیور - 2 عدد</span>
+                <span>850,000 تومان</span>
               </div>
             </div>
-          </section>
-
-          <section id="section-settings" class="section">
-            <h2>تنظیمات</h2>
-            <div class="settings-grid">
-              <div class="panel">
-                <div class="panel-header">
-                  <h3>تنظیمات عمومی</h3>
-                </div>
-                <div class="settings-form">
-                  <div class="form-group">
-                    <label>نام فروشگاه</label>
-                    <input type="text" value="عطرستان" />
-                  </div>
-                  <div class="form-group">
-                    <label>ایمیل پشتیبانی</label>
-                    <input type="email" value="support@atrestan.com" />
-                  </div>
-                  <div class="form-group">
-                    <label>شماره تماس</label>
-                    <input type="tel" value="021-12345678" />
-                  </div>
-                  <button class="btn btn-primary">ذخیره تنظیمات</button>
-                </div>
+            <div class="demo-order">
+              <div class="order-status completed">تکمیل شده</div>
+              <div class="order-info">
+                <strong>سفارش #1233</strong>
+                <span>عطر زنانه شنل - 1 عدد</span>
+                <span>1,200,000 تومان</span>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-users" class="section">
+        <h2>کاربران</h2>
+        <div class="placeholder">
+          <i class="fa-solid fa-users" style="font-size: 3rem; color: #3b82f6; margin-bottom: 1rem;"></i>
+          <h3>مدیریت کاربران</h3>
+          <p>این بخش با بک‌اند همکارتان تکمیل می‌شود.</p>
+        </div>
+      </section>
+
+      <section id="section-analytics" class="section">
+        <h2>تحلیل‌ها</h2>
+        <div class="analytics-grid">
+          <div class="panel chart-panel">
+            <div class="panel-header">
+              <h3>تحلیل فروش ماهانه</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="monthlyChart"></canvas>
+            </div>
+          </div>
+          <div class="panel chart-panel">
+            <div class="panel-header">
+              <h3>توزیع دسته‌بندی محصولات</h3>
+            </div>
+            <div class="chart-container">
+              <canvas id="categoryChart"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="section-settings" class="section">
+        <h2>تنظیمات</h2>
+        <div class="settings-grid">
+          <div class="panel">
+            <div class="panel-header">
+              <h3>تنظیمات عمومی</h3>
+            </div>
+            <div class="settings-form">
+              <div class="form-group">
+                <label>نام فروشگاه</label>
+                <input type="text" value="عطرستان" />
+              </div>
+              <div class="form-group">
+                <label>ایمیل پشتیبانی</label>
+                <input type="email" value="support@atrestan.com" />
+              </div>
+              <div class="form-group">
+                <label>شماره تماس</label>
+                <input type="tel" value="021-12345678" />
+              </div>
+              <button class="btn btn-primary">ذخیره تنظیمات</button>
+            </div>
+          </div>
 
             </div>
           </section>

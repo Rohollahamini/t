@@ -605,6 +605,10 @@ document.addEventListener('DOMContentLoaded', function() {
     initCart();
     initMobileSearch();
     initMobileNav();
+    initLogoDropdown();
+    initNavDropdowns();
+    initMenuOverlay();
+    initDropdownMenuItems();
     initFabCart();
     initSearchAccordion();
     
@@ -712,6 +716,184 @@ function initMobileNav() {
             nav.classList.remove('open');
         }
     });
+}
+
+// Initialize logo dropdown functionality
+function initLogoDropdown() {
+    const logoToggle = document.querySelector('.logo-dropdown-toggle');
+    const logoDropdown = document.querySelector('.logo-dropdown');
+    
+    if (logoToggle && logoDropdown) {
+        logoToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            logoDropdown.style.opacity = logoDropdown.style.opacity === '1' ? '0' : '1';
+            logoDropdown.style.visibility = logoDropdown.style.visibility === 'visible' ? 'hidden' : 'visible';
+            logoDropdown.style.transform = logoDropdown.style.transform === 'translateY(0px)' ? 'translateY(-10px)' : 'translateY(0px)';
+        });
+        
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!logoDropdown.contains(e.target) && !logoToggle.contains(e.target)) {
+                logoDropdown.style.opacity = '0';
+                logoDropdown.style.visibility = 'hidden';
+                logoDropdown.style.transform = 'translateY(-10px)';
+            }
+        });
+    }
+}
+
+// Initialize navigation dropdowns
+function initNavDropdowns() {
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+    
+    dropdownToggles.forEach(toggle => {
+        const dropdown = toggle.nextElementSibling;
+        if (dropdown && dropdown.classList.contains('dropdown-menu')) {
+            toggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Close other dropdowns
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    if (menu !== dropdown) {
+                        menu.style.opacity = '0';
+                        menu.style.visibility = 'hidden';
+                        menu.style.transform = 'translateY(-10px)';
+                    }
+                });
+                
+                // Toggle current dropdown
+                const isOpen = dropdown.style.opacity === '1';
+                dropdown.style.opacity = isOpen ? '0' : '1';
+                dropdown.style.visibility = isOpen ? 'hidden' : 'visible';
+                dropdown.style.transform = isOpen ? 'translateY(-10px)' : 'translateY(0px)';
+            });
+        }
+    });
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.nav-dropdown')) {
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.opacity = '0';
+                menu.style.visibility = 'hidden';
+                menu.style.transform = 'translateY(-10px)';
+            });
+        }
+    });
+}
+
+// Initialize half-page menu overlay
+function initMenuOverlay() {
+    const menuToggle = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
+    const menuClose = document.getElementById('menuClose');
+    
+    if (menuToggle && menuOverlay) {
+        menuToggle.addEventListener('click', function() {
+            menuOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+        
+        if (menuClose) {
+            menuClose.addEventListener('click', function() {
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = ''; // Restore scrolling
+            });
+        }
+        
+        // Close menu when clicking outside the menu content
+        menuOverlay.addEventListener('click', function(e) {
+            if (e.target === menuOverlay) {
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // Close menu with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    }
+}
+
+// Handle dropdown menu item clicks
+function initDropdownMenuItems() {
+    const dropdownItems = document.querySelectorAll('.dropdown-menu a, .menu-section a');
+    
+    dropdownItems.forEach(item => {
+        item.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const category = this.getAttribute('data-category');
+            const brand = this.getAttribute('data-brand');
+            
+            if (category) {
+                // Filter by category
+                filterProductsByCategory(category);
+            } else if (brand) {
+                // Filter by brand
+                filterProductsByBrand(brand);
+            }
+            
+            // Close any open dropdowns or menus
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                menu.style.opacity = '0';
+                menu.style.visibility = 'hidden';
+                menu.style.transform = 'translateY(-10px)';
+            });
+            
+            const menuOverlay = document.getElementById('menuOverlay');
+            if (menuOverlay) {
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+        });
+    });
+}
+
+// Filter products by category
+function filterProductsByCategory(category) {
+    const categoryButtons = document.querySelectorAll('.category-btn');
+    const categoryFilter = document.getElementById('categoryFilter');
+    
+    // Update category buttons
+    categoryButtons.forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.getAttribute('data-category') === category) {
+            btn.classList.add('active');
+        }
+    });
+    
+    // Update filter dropdown
+    if (categoryFilter) {
+        categoryFilter.value = category;
+    }
+    
+    // Apply filter
+    applyFilters();
+    
+    // Show notification
+    showNotification(`نمایش محصولات ${category === 'all' ? 'همه' : category === 'men' ? 'مردانه' : category === 'women' ? 'زنانه' : 'یونیسکس'}`);
+}
+
+// Filter products by brand
+function filterProductsByBrand(brand) {
+    const brandFilter = document.getElementById('brandFilter');
+    
+    // Update filter dropdown
+    if (brandFilter) {
+        brandFilter.value = brand;
+    }
+    
+    // Apply filter
+    applyFilters();
+    
+    // Show notification
+    showNotification(`نمایش محصولات برند ${brand}`);
 }
 
 // Floating cart (mobile)
