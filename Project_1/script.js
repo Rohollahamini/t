@@ -14,7 +14,11 @@ const products = [
         inStock: true,
         discount: 29,
         volume: '100ml',
-        features: ['ضد حساسیت', 'مقاوم در برابر تعریق', 'رایحه پایدار']
+        features: ['ضد حساسیت', 'مقاوم در برابر تعریق', 'رایحه پایدار'],
+        nature: 'warm',
+        taste: 'woody',
+        density: 'edt',
+        gender: 'man'
     },
     {
         id: '2',
@@ -30,7 +34,11 @@ const products = [
         inStock: true,
         discount: 20,
         volume: '50ml',
-        features: ['رایحه طبیعی', 'مقاوم 8 ساعته', 'بسته‌بندی لوکس']
+        features: ['رایحه طبیعی', 'مقاوم 8 ساعته', 'بسته‌بندی لوکس'],
+        nature: 'mild',
+        taste: 'flower',
+        density: 'edp',
+        gender: 'woman'
     },
     {
         id: '3',
@@ -44,7 +52,11 @@ const products = [
         reviews: 567,
         inStock: true,
         volume: '100ml',
-        features: ['رایحه منحصر به فرد', 'مقاوم 12 ساعته', 'بسته‌بندی شیشه‌ای']
+        features: ['رایحه منحصر به فرد', 'مقاوم 12 ساعته', 'بسته‌بندی شیشه‌ای'],
+        nature: 'warm',
+        taste: 'leather',
+        density: 'parfum',
+        gender: 'uni'
     },
     {
         id: '4',
@@ -345,6 +357,12 @@ function updateCartDisplay() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     cartCount.textContent = totalItems;
     
+    // Update mobile cart count
+    const cartCountMobile = document.getElementById('cartCountMobile');
+    if (cartCountMobile) {
+        cartCountMobile.textContent = totalItems;
+    }
+    
     // Update cart items
     if (cart.length === 0) {
         cartItems.innerHTML = '<div class="empty-cart">سبد خرید خالی است</div>';
@@ -376,6 +394,9 @@ function updateCartDisplay() {
     // Update cart total
     const total = cart.reduce((sum, item) => sum + (item.product.price * item.quantity), 0);
     cartTotal.textContent = formatPrice(total) + ' تومان';
+    
+    // Dispatch cart updated event
+    document.dispatchEvent(new CustomEvent('cartUpdated'));
 }
 
 function updateCartQuantity(productId, change) {
@@ -390,6 +411,15 @@ function removeFromCart(productId) {
     cart = cart.filter(item => item.product.id !== productId);
     updateCartDisplay();
     showNotification('محصول از سبد خرید حذف شد!');
+}
+
+function updateCartCount() {
+    const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCount = document.getElementById('cartCount');
+    const cartCountMobile = document.getElementById('cartCountMobile');
+    
+    if (cartCount) cartCount.textContent = totalItems;
+    if (cartCountMobile) cartCountMobile.textContent = totalItems;
 }
 
 function toggleWishlist(productId) {
@@ -588,6 +618,9 @@ function initFilters() {
             priceDisplay.textContent = `${formatPrice(min)} تا ${formatPrice(max)} تومان`;
         }
     }
+    
+    // Initialize sidebar filters
+    initSidebarFilters();
 }
 
 // Initialize everything when DOM is loaded
@@ -608,12 +641,18 @@ document.addEventListener('DOMContentLoaded', function() {
     initLogoDropdown();
     initNavDropdowns();
     initMenuOverlay();
+    initMobileToolbar();
+    initHeaderScroll();
+    initFooterBackToTop();
     initDropdownMenuItems();
     initFabCart();
     initSearchAccordion();
     
     // Initialize filters
     initFilters();
+    
+    // Initialize sidebar filters
+    initSidebarFilters();
     
     // Update cart count
     updateCartCount();
@@ -786,36 +825,138 @@ function initNavDropdowns() {
 // Initialize half-page menu overlay
 function initMenuOverlay() {
     const menuToggle = document.getElementById('menuToggle');
+    const menuToggleMobile = document.getElementById('menuToggleMobile');
     const menuOverlay = document.getElementById('menuOverlay');
     const menuClose = document.getElementById('menuClose');
     
+    // Desktop menu toggle
     if (menuToggle && menuOverlay) {
         menuToggle.addEventListener('click', function() {
             menuOverlay.classList.add('open');
             document.body.style.overflow = 'hidden'; // Prevent background scrolling
         });
-        
-        if (menuClose) {
-            menuClose.addEventListener('click', function() {
-                menuOverlay.classList.remove('open');
-                document.body.style.overflow = ''; // Restore scrolling
-            });
+    }
+    
+    // Mobile menu toggle
+    if (menuToggleMobile && menuOverlay) {
+        menuToggleMobile.addEventListener('click', function() {
+            menuOverlay.classList.add('open');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        });
+    }
+    
+    if (menuClose) {
+        menuClose.addEventListener('click', function() {
+            menuOverlay.classList.remove('open');
+            document.body.style.overflow = ''; // Restore scrolling
+        });
+    }
+    
+    // Close menu when clicking outside the menu content
+    menuOverlay.addEventListener('click', function(e) {
+        if (e.target === menuOverlay) {
+            menuOverlay.classList.remove('open');
+            document.body.style.overflow = '';
         }
-        
-        // Close menu when clicking outside the menu content
-        menuOverlay.addEventListener('click', function(e) {
-            if (e.target === menuOverlay) {
-                menuOverlay.classList.remove('open');
-                document.body.style.overflow = '';
-            }
+    });
+    
+    // Close menu with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
+            menuOverlay.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+    });
+}
+
+// Initialize mobile toolbar
+function initMobileToolbar() {
+    const scrollTopBtn = document.getElementById('scrollTopBtn');
+    const homeBtn = document.querySelector('.home-btn');
+    const cartBtnMobile = document.getElementById('cartBtnMobile');
+    const cartBtn = document.getElementById('cartBtn');
+    
+    // Scroll to top functionality
+    if (scrollTopBtn) {
+        scrollTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
         
-        // Close menu with Escape key
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && menuOverlay.classList.contains('open')) {
-                menuOverlay.classList.remove('open');
-                document.body.style.overflow = '';
+        // Show/hide scroll to top button based on scroll position
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.style.opacity = '1';
+                scrollTopBtn.style.visibility = 'visible';
+            } else {
+                scrollTopBtn.style.opacity = '0';
+                scrollTopBtn.style.visibility = 'hidden';
             }
+        });
+    }
+    
+    // Home button functionality
+    if (homeBtn) {
+        homeBtn.addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    }
+    
+    // Mobile cart button functionality
+    if (cartBtnMobile && cartBtn) {
+        cartBtnMobile.addEventListener('click', function() {
+            // Trigger the same cart functionality as desktop
+            cartBtn.click();
+        });
+    }
+    
+    // Update mobile cart count
+    function updateMobileCartCount() {
+        const cartCountMobile = document.getElementById('cartCountMobile');
+        const cartCount = document.getElementById('cartCount');
+        if (cartCountMobile && cartCount) {
+            cartCountMobile.textContent = cartCount.textContent;
+        }
+    }
+    
+    // Call update function initially and whenever cart changes
+    updateMobileCartCount();
+    
+    // Listen for cart updates
+    document.addEventListener('cartUpdated', updateMobileCartCount);
+}
+
+// Initialize header scroll behavior
+function initHeaderScroll() {
+    const header = document.querySelector('.header');
+    const trustSection = document.querySelector('.trust-section');
+    
+    if (header && trustSection) {
+        window.addEventListener('scroll', function() {
+            const trustSectionTop = trustSection.offsetTop;
+            const scrollTop = window.pageYOffset;
+            
+            if (scrollTop >= trustSectionTop) {
+                header.classList.add('fixed');
+            } else {
+                header.classList.remove('fixed');
+            }
+        });
+    }
+}
+
+// Initialize footer back to top functionality
+function initFooterBackToTop() {
+    const footerBackToTop = document.querySelector('.footer_back2top');
+    
+    if (footerBackToTop) {
+        footerBackToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 }
@@ -926,4 +1067,310 @@ function initSearchAccordion() {
             performSearch(term);
         }
     });
+}
+
+// Sidebar Filter Functionality
+let activeFilters = {
+    price: { min: 0, max: 649526130 },
+    nature: [],
+    taste: [],
+    density: [],
+    gender: []
+};
+
+// Initialize sidebar filters
+function initSidebarFilters() {
+    // Price slider
+    initPriceSlider();
+    
+    // Filter list items
+    initFilterLists();
+    
+    // Apply filters button
+    const applyButton = document.querySelector('.price_slider_amount .button');
+    if (applyButton) {
+        applyButton.addEventListener('click', function(e) {
+            e.preventDefault();
+            applySidebarFilters();
+        });
+    }
+}
+
+// Initialize price slider
+function initPriceSlider() {
+    const slider = document.getElementById('priceSlider');
+    const minHandle = document.querySelector('.min-handle');
+    const maxHandle = document.querySelector('.max-handle');
+    const range = document.querySelector('.price_slider_range');
+    const fromSpan = document.querySelector('.price_label .from');
+    const toSpan = document.querySelector('.price_label .to');
+    const minInput = document.getElementById('min_price');
+    const maxInput = document.getElementById('max_price');
+    
+    if (!slider || !minHandle || !maxHandle) return;
+    
+    let isDragging = false;
+    let currentHandle = null;
+    
+    const minPrice = 0;
+    const maxPrice = 649526130;
+    
+    function updateSlider() {
+        const minPercent = ((activeFilters.price.min - minPrice) / (maxPrice - minPrice)) * 100;
+        const maxPercent = ((activeFilters.price.max - minPrice) / (maxPrice - minPrice)) * 100;
+        
+        minHandle.style.left = minPercent + '%';
+        maxHandle.style.left = maxPercent + '%';
+        range.style.left = minPercent + '%';
+        range.style.width = (maxPercent - minPercent) + '%';
+        
+        // Update labels
+        fromSpan.textContent = formatPrice(activeFilters.price.min) + ' تومان';
+        toSpan.textContent = formatPrice(activeFilters.price.max) + ' تومان';
+        
+        // Update hidden inputs
+        minInput.value = activeFilters.price.min;
+        maxInput.value = activeFilters.price.max;
+    }
+    
+    function formatPrice(price) {
+        return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+    
+    function getPriceFromPercent(percent) {
+        return Math.round(minPrice + (percent / 100) * (maxPrice - minPrice));
+    }
+    
+    function handleMouseDown(e) {
+        isDragging = true;
+        currentHandle = e.target;
+        document.addEventListener('mousemove', handleMouseMove);
+        document.addEventListener('mouseup', handleMouseUp);
+    }
+    
+    function handleMouseMove(e) {
+        if (!isDragging) return;
+        
+        const rect = slider.getBoundingClientRect();
+        let percent = ((e.clientX - rect.left) / rect.width) * 100;
+        percent = Math.max(0, Math.min(100, percent));
+        
+        if (currentHandle === minHandle) {
+            const maxPercent = parseFloat(maxHandle.style.left);
+            percent = Math.min(percent, maxPercent - 5);
+            activeFilters.price.min = getPriceFromPercent(percent);
+        } else if (currentHandle === maxHandle) {
+            const minPercent = parseFloat(minHandle.style.left);
+            percent = Math.max(percent, minPercent + 5);
+            activeFilters.price.max = getPriceFromPercent(percent);
+        }
+        
+        updateSlider();
+    }
+    
+    function handleMouseUp() {
+        isDragging = false;
+        currentHandle = null;
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+    }
+    
+    // Add event listeners
+    minHandle.addEventListener('mousedown', handleMouseDown);
+    maxHandle.addEventListener('mousedown', handleMouseDown);
+    
+    // Initialize slider
+    updateSlider();
+}
+
+// Initialize filter lists
+function initFilterLists() {
+    const filterLinks = document.querySelectorAll('.filter-list a');
+    
+    filterLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const filterType = this.getAttribute('data-filter');
+            const filterValue = this.getAttribute('data-value');
+            
+            // Toggle active state
+            this.classList.toggle('active');
+            
+            // Update active filters
+            if (this.classList.contains('active')) {
+                if (!activeFilters[filterType].includes(filterValue)) {
+                    activeFilters[filterType].push(filterValue);
+                }
+            } else {
+                activeFilters[filterType] = activeFilters[filterType].filter(value => value !== filterValue);
+            }
+            
+            // Apply filters
+            applySidebarFilters();
+        });
+    });
+}
+
+// Apply sidebar filters
+function applySidebarFilters() {
+    console.log('Applying sidebar filters:', activeFilters);
+    
+    filteredProducts = products.filter(product => {
+        // Price filter
+        const priceMatch = product.price >= activeFilters.price.min && product.price <= activeFilters.price.max;
+        
+        // Nature filter (if product has nature property)
+        const natureMatch = activeFilters.nature.length === 0 || 
+            (product.nature && activeFilters.nature.includes(product.nature));
+        
+        // Taste filter (if product has taste property)
+        const tasteMatch = activeFilters.taste.length === 0 || 
+            (product.taste && activeFilters.taste.includes(product.taste));
+        
+        // Density filter (if product has density property)
+        const densityMatch = activeFilters.density.length === 0 || 
+            (product.density && activeFilters.density.includes(product.density));
+        
+        // Gender filter (if product has gender property)
+        const genderMatch = activeFilters.gender.length === 0 || 
+            (product.gender && activeFilters.gender.includes(product.gender));
+        
+        return priceMatch && natureMatch && tasteMatch && densityMatch && genderMatch;
+    });
+    
+    console.log(`Filtered to ${filteredProducts.length} products`);
+    renderProducts();
+    updateProductsCount();
+}
+
+// Update products count
+function updateProductsCount() {
+    const productsCount = document.querySelector('.products-count');
+    if (productsCount) {
+        productsCount.textContent = `نمایش ۱-${Math.min(filteredProducts.length, 8)} از ${filteredProducts.length} محصول`;
+    }
+}
+
+// Enhanced filter function to work with sidebar
+function filterProducts() {
+    try {
+        console.log('Filtering products...');
+        
+        const searchTerm = searchInput?.value?.toLowerCase() || '';
+        const selectedBrand = brandFilter?.value || 'all';
+        const categoryFilterValue = document.getElementById('categoryFilter')?.value || 'all';
+        const minPrice = document.getElementById('minPrice')?.value || 0;
+        const maxPrice = document.getElementById('maxPrice')?.value || 100000000;
+        
+        console.log('Filtering products with:', {
+            searchTerm,
+            selectedBrand,
+            categoryFilterValue,
+            minPrice,
+            maxPrice
+        });
+        
+        filteredProducts = products.filter(product => {
+            const searchMatch = !searchTerm || 
+                product.name.toLowerCase().includes(searchTerm) ||
+                product.brand.toLowerCase().includes(searchTerm) ||
+                product.description.toLowerCase().includes(searchTerm);
+            
+            const brandMatch = selectedBrand === 'all' || product.brand === selectedBrand;
+            const categoryFilterMatch = categoryFilterValue === 'all' || product.category === categoryFilterValue;
+            const priceMatch = product.price >= minPrice && product.price <= maxPrice;
+            
+            // Combine with sidebar filters
+            const sidebarPriceMatch = product.price >= activeFilters.price.min && product.price <= activeFilters.price.max;
+            const natureMatch = activeFilters.nature.length === 0 || 
+                (product.nature && activeFilters.nature.includes(product.nature));
+            const tasteMatch = activeFilters.taste.length === 0 || 
+                (product.taste && activeFilters.taste.includes(product.taste));
+            const densityMatch = activeFilters.density.length === 0 || 
+                (product.density && activeFilters.density.includes(product.density));
+            const genderMatch = activeFilters.gender.length === 0 || 
+                (product.gender && activeFilters.gender.includes(product.gender));
+            
+            return categoryMatch && categoryFilterMatch && brandMatch && priceMatch && searchMatch && 
+                   sidebarPriceMatch && natureMatch && tasteMatch && densityMatch && genderMatch;
+        });
+        
+        console.log(`Filtered to ${filteredProducts.length} products`);
+        
+        // Sort products
+        sortProducts();
+        
+        // Render products
+        renderProducts();
+        updateProductsCount();
+        
+    } catch (error) {
+        console.error('Error filtering products:', error);
+        filteredProducts = products;
+        renderProducts();
+    }
+}
+
+// Initialize accordion functionality
+function initAccordions() {
+    // Sidebar accordion filters
+    const accordionToggles = document.querySelectorAll('.widget-title.accordion-toggle');
+    accordionToggles.forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const content = this.nextElementSibling;
+            const icon = this.querySelector('i');
+            
+            // Toggle active state
+            this.classList.toggle('active');
+            content.classList.toggle('active');
+            
+            // Rotate icon
+            if (this.classList.contains('active')) {
+                icon.style.transform = 'rotate(180deg)';
+            } else {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        });
+    });
+    
+    // Mobile menu accordion
+    const menuAccordionToggle = document.querySelector('.menu-accordion-toggle');
+    const menuAccordionContent = document.querySelector('.menu-accordion-content');
+    
+    if (menuAccordionToggle && menuAccordionContent) {
+        menuAccordionToggle.addEventListener('click', function() {
+            this.classList.toggle('active');
+            menuAccordionContent.classList.toggle('active');
+        });
+        
+        // Sub-accordion items
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', function() {
+                const body = this.nextElementSibling;
+                const icon = this.querySelector('i');
+                const isActive = this.classList.contains('active');
+                
+                // Close all other accordion items
+                accordionHeaders.forEach(otherHeader => {
+                    if (otherHeader !== this) {
+                        otherHeader.classList.remove('active');
+                        otherHeader.nextElementSibling.classList.remove('active');
+                        otherHeader.querySelector('i').style.transform = 'rotate(0deg)';
+                    }
+                });
+                
+                // Toggle current item
+                this.classList.toggle('active');
+                body.classList.toggle('active');
+                
+                if (!isActive) {
+                    icon.style.transform = 'rotate(180deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+        });
+    }
 }

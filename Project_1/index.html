@@ -69,7 +69,6 @@
 
     <!-- Header -->
     <header class="header">
-
         <!-- Main Header -->
         <div class="main-header">
             <div class="container">
@@ -174,10 +173,29 @@
                         </button>
                     </div>
                 </div>
-                    </div>
             </div>
         </div>
     </header>
+
+    <!-- Mobile Toolbar -->
+    <div class="mobile-toolbar">
+        <button class="toolbar-btn scroll-top-btn" id="scrollTopBtn" title="رفتن به بالای صفحه">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="toolbar-btn home-btn" title="خانه">
+            <i class="fas fa-home"></i>
+        </button>
+        <button class="toolbar-btn cart-btn-mobile" id="cartBtnMobile" title="سبد خرید">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartCountMobile">0</span>
+        </button>
+        <button class="toolbar-btn menu-btn" id="menuToggleMobile" title="منو">
+            <i class="fas fa-bars"></i>
+        </button>
+        <button class="toolbar-btn login-btn" title="ورود / خروج">
+            <i class="fas fa-user"></i>
+        </button>
+    </div>
 
     <!-- Half-Page Menu Overlay -->
     <div class="menu-overlay" id="menuOverlay">
@@ -190,42 +208,57 @@
             </div>
             <div class="menu-sections">
                 <div class="menu-section">
-                    <h3>دسته‌بندی محصولات</h3>
-                    <ul>
-                        <li><a href="#" data-category="all">همه محصولات</a></li>
-                        <li><a href="#" data-category="men">عطر مردانه</a></li>
-                        <li><a href="#" data-category="women">عطر زنانه</a></li>
-                        <li><a href="#" data-category="unisex">عطر یونیسکس</a></li>
-                    </ul>
+                    <a href="index.html" class="menu-link">
+                        <i class="fas fa-home"></i>
+                        <span>خانه</span>
+                    </a>
                 </div>
                 <div class="menu-section">
-                    <h3>برندها</h3>
-                    <ul>
-                        <li><a href="#" data-brand="Dior">Dior</a></li>
-                        <li><a href="#" data-brand="Chanel">Chanel</a></li>
-                        <li><a href="#" data-brand="Tom Ford">Tom Ford</a></li>
-                        <li><a href="#" data-brand="Armani">Armani</a></li>
-                        <li><a href="#" data-brand="Victoria's Secret">Victoria's Secret</a></li>
-                        <li><a href="#" data-brand="Jo Malone">Jo Malone</a></li>
-                    </ul>
+                    <a href="articles.html" class="menu-link">
+                        <i class="fas fa-newspaper"></i>
+                        <span>مقالات</span>
+                    </a>
                 </div>
                 <div class="menu-section">
-                    <h3>خدمات</h3>
-                    <ul>
-                        <li><a href="#">راهنمای خرید</a></li>
-                        <li><a href="#">شرایط بازگشت</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                        <li><a href="#">تماس با ما</a></li>
-                    </ul>
+                    <a href="about.html" class="menu-link">
+                        <i class="fas fa-info-circle"></i>
+                        <span>درباره ما</span>
+                    </a>
                 </div>
-                <div class="menu-section">
-                    <h3>حساب کاربری</h3>
-                    <ul>
-                        <li><a href="#">ورود / ثبت نام</a></li>
-                        <li><a href="#">سفارشات من</a></li>
-                        <li><a href="#">لیست علاقه‌مندی‌ها</a></li>
-                        <li><a href="#">تنظیمات حساب</a></li>
-                    </ul>
+                <div class="menu-section accordion-section">
+                    <div class="menu-accordion-toggle">
+                        <i class="fas fa-box"></i>
+                        <span>محصولات</span>
+                        <i class="fas fa-chevron-down accordion-icon"></i>
+                    </div>
+                    <div class="menu-accordion-content">
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>دسته‌بندی محصولات</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <a href="#" data-category="all">همه محصولات</a>
+                                <a href="#" data-category="men">عطر مردانه</a>
+                                <a href="#" data-category="women">عطر زنانه</a>
+                                <a href="#" data-category="unisex">عطر یونیسکس</a>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <div class="accordion-header">
+                                <span>برندها</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="accordion-body">
+                                <a href="#" data-brand="Dior">Dior</a>
+                                <a href="#" data-brand="Chanel">Chanel</a>
+                                <a href="#" data-brand="Tom Ford">Tom Ford</a>
+                                <a href="#" data-brand="Armani">Armani</a>
+                                <a href="#" data-brand="Victoria's Secret">Victoria's Secret</a>
+                                <a href="#" data-brand="Jo Malone">Jo Malone</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -268,74 +301,208 @@
         </div>
     </section>
 
-    <!-- Filters -->
-    <section class="filters">
+    <!-- Products with Sidebar -->
+    <section class="products-with-sidebar">
         <div class="container">
-            <div class="filter-panel">
-                <div class="filter-group">
-                    <label>دسته‌بندی کالا:</label>
-                    <select id="categoryFilter">
-                        <option value="all">همه انواع</option>
-                        <option value="men">مردانه</option>
-                        <option value="women">زنانه</option>
-                        <option value="unisex">یونیسکس</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>برند:</label>
-                    <select id="brandFilter">
-                        <option value="all">همه برندها</option>
-                        <option value="Dior">Dior</option>
-                        <option value="Chanel">Chanel</option>
-                        <option value="Tom Ford">Tom Ford</option>
-                        <option value="Armani">Armani</option>
-                        <option value="Victoria's Secret">Victoria's Secret</option>
-                        <option value="Jo Malone">Jo Malone</option>
-                        <option value="Hugo Boss">Hugo Boss</option>
-                        <option value="Lancome">Lancome</option>
-                    </select>
-                </div>
-                <div class="filter-group">
-                    <label>فیلتر قیمت:</label>
-                    <div class="price-filter">
-                        <input type="range" id="priceRange" min="0" max="100000000" value="100000000" step="1000000">
-                        <div class="price-inputs">
-                            <input type="number" id="minPrice" placeholder="حداقل قیمت" min="0" max="100000000">
-                            <span>تا</span>
-                            <input type="number" id="maxPrice" placeholder="حداکثر قیمت" min="0" max="100000000" value="100000000">
+            <div class="products-layout">
+                <!-- Sidebar -->
+                <aside class="sidebar" id="sidebar">
+                    <div class="sidebar-inner">
+                        <!-- Price Filter -->
+                        <div class="widget price-filter-widget">
+                            <div class="widget-title">فیلتر براساس قیمت:</div>
+                            <div class="widget-content">
+                                <form method="get" action="#">
+                                    <div class="price_slider_wrapper">
+                                        <div class="price_slider" id="priceSlider">
+                                            <div class="price_slider_range"></div>
+                                            <span class="price_slider_handle min-handle" tabindex="0"></span>
+                                            <span class="price_slider_handle max-handle" tabindex="0"></span>
+                                        </div>
+                                        <div class="price_slider_amount" data-step="10">
+                                            <label class="screen-reader-text" for="min_price">حداقل قیمت</label>
+                                            <input type="text" id="min_price" name="min_price" value="0" data-min="0" placeholder="حداقل قیمت" style="display: none;">
+                                            <label class="screen-reader-text" for="max_price">حداكثر قيمت</label>
+                                            <input type="text" id="max_price" name="max_price" value="649526130" data-max="649526130" placeholder="حداكثر قيمت" style="display: none;">
+                                            <button type="submit" class="button">صافی</button>
+                                            <div class="price_label">
+                                                قيمت: <span class="from">0&nbsp;تومان</span> — <span class="to">649,526,130&nbsp;تومان</span>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
-                        <div class="price-display">
-                            <span id="priceDisplay">0 تا ۱۰۰,۰۰۰,۰۰۰ تومان</span>
+
+                        <!-- Nature Filter -->
+                        <div class="widget nature-filter-widget">
+                            <div class="widget-title accordion-toggle">
+                                <span>طبع عطر</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="widget-content accordion-content">
+                                <ul class="filter-list">
+                                    <li><a href="#" data-filter="nature" data-value="cold">خنک</a></li>
+                                    <li><a href="#" data-filter="nature" data-value="warm">گرم</a></li>
+                                    <li><a href="#" data-filter="nature" data-value="mild">معتدل</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Taste Filter -->
+                        <div class="widget taste-filter-widget">
+                            <div class="widget-title accordion-toggle">
+                                <span>طعم عطر</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="widget-content accordion-content">
+                                <ul class="filter-list">
+                                    <li><a href="#" data-filter="taste" data-value="aquatic">آبزی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="aromatic">آروماتیک</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="spice">ادویه ای</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="powdery">پودری</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="sour">ترش</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="bitter">تلخ</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="spicy">تند</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="leather">چرمی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="woody">چوبی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="marine">دریایی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="smoky">دودی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="rosie">رزی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="eastern">شرقی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="sweet">شیرین</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="amber">عنبری</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="ferash">فرش</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="fougere">فوژه</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="flower">گلی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="herbal">گیاهی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="citrus">مرکباتی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="fragrant">معطر</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="mildly">ملایم</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="fruity">میوه ای</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="vanilla">وانیلی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="almond">بادامی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="tobacco">تنباکویی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="chyper">چایپر</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="hazelnut">فندوقی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="caramel">کاراملی</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="mediterranean">مدیترانه ای</a></li>
+                                    <li><a href="#" data-filter="taste" data-value="مُشکی">مُشکی</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Density Filter -->
+                        <div class="widget density-filter-widget">
+                            <div class="widget-title accordion-toggle">
+                                <span>غلظت</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="widget-content accordion-content">
+                                <ul class="filter-list">
+                                    <li><a href="#" data-filter="density" data-value="perfume">پارفوم</a></li>
+                                    <li><a href="#" data-filter="density" data-value="clone">کلون</a></li>
+                                    <li><a href="#" data-filter="density" data-value="edp">ادوپرفیوم</a></li>
+                                    <li><a href="#" data-filter="density" data-value="edt">ادوتویلت</a></li>
+                                    <li><a href="#" data-filter="density" data-value="exdp">اکستریت د پرفیوم</a></li>
+                                    <li><a href="#" data-filter="density" data-value="parfum">پرفیوم</a></li>
+                                    <li><a href="#" data-filter="density" data-value="pw">پرفیوم واتر</a></li>
+                                    <li><a href="#" data-filter="density" data-value="edc">ادکلن</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Gender Filter -->
+                        <div class="widget gender-filter-widget">
+                            <div class="widget-title accordion-toggle">
+                                <span>جنسیت</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </div>
+                            <div class="widget-content accordion-content">
+                                <ul class="filter-list">
+                                    <li><a href="#" data-filter="gender" data-value="woman">زنانه</a></li>
+                                    <li><a href="#" data-filter="gender" data-value="man">مردانه</a></li>
+                                    <li><a href="#" data-filter="gender" data-value="uni">مردانه/زنانه</a></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Product Categories -->
+                        <div class="widget categories-widget">
+                            <div class="widget-title">دسته های محصولات</div>
+                            <div class="widget-content">
+                                <ul class="product-categories">
+                                    <li class="cat-item"><a href="#">آرایشی</a></li>
+                                    <li class="cat-item"><a href="#">بادی میست</a></li>
+                                    <li class="cat-item"><a href="#">بلک فرایدی</a></li>
+                                    <li class="cat-item"><a href="#">پک‌های دکانت</a></li>
+                                    <li class="cat-item"><a href="#">دسته بندی نشده</a></li>
+                                    <li class="cat-item"><a href="#">دکانت</a></li>
+                                    <li class="cat-item"><a href="#">سمپل</a></li>
+                                    <li class="cat-item"><a href="#">عطر زنانه</a></li>
+                                    <li class="cat-item current-cat"><a href="#">عطر مردانه</a></li>
+                                    <li class="cat-item"><a href="#">عطرهای اقتصادی</a></li>
+                                    <li class="cat-item"><a href="#">عطرهای جیبی</a></li>
+                                    <li class="cat-item"><a href="#">عطرهای نیش</a></li>
+                                    <li class="cat-item"><a href="#">عطرهای ورسای</a></li>
+                                    <li class="cat-item"><a href="#">مینیاتوری</a></li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="filter-group">
-                    <label>مرتب‌سازی:</label>
-                    <select id="sortFilter">
-                        <option value="popular">محبوب‌ترین</option>
-                        <option value="price-low">ارزان‌ترین</option>
-                        <option value="price-high">گران‌ترین</option>
-                        <option value="rating">بهترین امتیاز</option>
-                        <option value="newest">جدیدترین</option>
-                    </select>
-                </div>
-                <div class="view-mode">
-                    <button class="view-btn active" data-view="grid">
-                        <i class="fas fa-th"></i>
-                    </button>
-                    <button class="view-btn" data-view="list">
-                        <i class="fas fa-list"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </section>
+                </aside>
 
-    <!-- Products -->
-    <section class="products">
-        <div class="container">
-            <div class="products-grid" id="productsGrid">
-                <!-- Products will be loaded here by JavaScript -->
+                <!-- Products Content -->
+                <div class="products-content">
+                    <!-- Products Header -->
+                    <div class="products-header">
+                        <div class="products-info">
+                            <h2>محصولات</h2>
+                            <span class="products-count">نمایش ۱-۸ از ۸ محصول</span>
+                        </div>
+                        <div class="products-controls">
+                            <div class="sort-controls">
+                                <label>مرتب‌سازی:</label>
+                                <select id="sortFilter">
+                                    <option value="popular">محبوب‌ترین</option>
+                                    <option value="price-low">ارزان‌ترین</option>
+                                    <option value="price-high">گران‌ترین</option>
+                                    <option value="rating">بهترین امتیاز</option>
+                                    <option value="newest">جدیدترین</option>
+                                </select>
+                            </div>
+                            <div class="view-mode">
+                                <button class="view-btn active" data-view="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="products-grid" id="productsGrid">
+                        <!-- Products will be loaded here by JavaScript -->
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="pagination" id="pagination">
+                        <button class="pagination-btn prev-btn" id="prevPage">
+                            <i class="fas fa-chevron-right"></i>
+                            قبلی
+                        </button>
+                        <div class="pagination-numbers" id="paginationNumbers">
+                            <!-- Page numbers will be generated here -->
+                        </div>
+                        <button class="pagination-btn next-btn" id="nextPage">
+                            بعدی
+                            <i class="fas fa-chevron-left"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -429,77 +596,53 @@
                     <div class="trust-badge">پشتیبانی ۲۴/۷</div>
                 </div>
             </div>
-
-
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
+    <!-- Minimal Footer -->
+    <footer class="footer-minimal">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>عطرستان</h3>
-                    <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا</p>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>دسترسی سریع</h4>
-                    <ul>
-                        <li><a href="#">عطر مردانه</a></li>
-                        <li><a href="#">عطر زنانه</a></li>
-                        <li><a href="#">عطر یونیسکس</a></li>
-                        <li><a href="#">برندها</a></li>
-                        <li><a href="#">تخفیف‌ها</a></li>
-                        <li><a href="#">جدیدترین‌ها</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
                     <h4>خدمات مشتریان</h4>
                     <ul>
-                        <li><a href="#">راهنمای خرید</a></li>
-                        <li><a href="#">شرایط بازگشت</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                        <li><a href="#">تماس با ما</a></li>
-                        <li><a href="#">نظرات مشتریان</a></li>
-                        <li><a href="#">قوانین و مقررات</a></li>
+                        <li><a href="#">روش و زمان ارسال سفارش</a></li>
+                        <li><a href="#">روش های پرداخت</a></li>
+                        <li><a href="#">شرایط بازگرداندن کالا</a></li>
+                        <li><a href="#">گارانتی اصالت و سلامت فیزیکی</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
-                    <h4>اطلاعات تماس</h4>
+                    <h4>ارتباط با عطرستان</h4>
+                    <ul>
+                        <li><a href="about.html">درباره ما</a></li>
+                        <li><a href="#">ارتباط با ما</a></li>
+                        <li><a href="#">سوالات متداول</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>نماد الکترونیکی</h4>
+                    <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=372375&amp;Code=KG9wrTjeETe8IdQDktQEpmUZI0oGCOna">
+                        <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=372375&amp;Code=KG9wrTjeETe8IdQDktQEpmUZI0oGCOna" alt="" style="cursor:pointer" code="KG9wrTjeETe8IdQDktQEpmUZI0oGCOna">
+                    </a>
+                </div>
+                <div class="footer-section">
+                    <h4>ارتباط با ما</h4>
                     <div class="contact-info">
                         <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>۰۲۱-۱۲۳۴۵۶۷۸</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-envelope"></i>
-                            <span>info@atrestan.com</span>
-                        </div>
-                        <div class="contact-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            <span>تهران، خیابان ولیعصر</span>
+                            <span>تهران، میدان انقلاب، خیابان منیری جاوید</span>
                         </div>
-                    </div>
-                    <div class="working-hours">
-                        <h5>ساعات کاری</h5>
-                        <p>شنبه تا چهارشنبه: ۹ صبح تا ۸ شب</p>
-                        <p>پنجشنبه: ۹ صبح تا ۶ عصر</p>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>09021272575 - 02166485247</span>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <div class="copyright">
-                    © ۱۴۰۲ عطرستان. تمامی حقوق محفوظ است.
-                </div>
-                <div class="footer-links">
-                    <a href="#">حریم خصوصی</a>
-                    <a href="#">قوانین استفاده</a>
-                    <a href="#">نقشه سایت</a>
+                    کلیه حقوق مادی و معنوی برای این سایت محفوظ می باشد
                 </div>
             </div>
         </div>
@@ -534,9 +677,7 @@
     </div>
 
     <!-- Floating Cart Button (Mobile) -->
-    <button class="fab-cart" id="fabCartBtn" aria-label="سبد خرید">
-        <i class="fas fa-shopping-cart"></i>
-    </button>
+    
 
     <!-- Search Accordion (inside nav collapse) -->
     <div class="search-accordion">

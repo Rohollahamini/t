@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست ناو بار شیشه‌ای</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            min-height: 200vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 0;
+        }
+        
+        .test-content {
+            padding: 100px 20px;
+            text-align: center;
+            color: white;
+        }
+        
+        .test-content h1 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .test-content p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .test-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .test-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        
+        .test-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <!-- Main Header -->
+        <div class="main-header">
+            <div class="container">
+                <!-- Navigation moved to top -->
+                <nav class="navigation">
+                    <div class="nav-content">
+                        <!-- Logo with dropdown functionality -->
+                        <div class="logo">
+                            <h1 class="logo-dropdown-toggle">عطرستان</h1>
+                        </div>
+                        
+                        <!-- Menu Toggle Button -->
+                        <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        
+                        <div class="nav-links">
+                            <a href="index.html" class="nav-link active">خانه</a>
+                            <a href="articles.html" class="nav-link">مقالات</a>
+                            <a href="about.html" class="nav-link">درباره ما</a>
+                        </div>
+                        
+                        <!-- Actions moved into nav for accordion -->
+                        <div class="header-actions">
+                            <button class="action-btn" id="toggleSearchAccordion" title="جستجو">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            <button class="action-btn theme-toggle" id="themeToggle">
+                                <i class="fas fa-moon"></i>
+                            </button>
+                            <button class="action-btn cart-btn" id="cartBtn">
+                                <i class="fas fa-shopping-cart"></i>
+                                <span class="badge" id="cartCount">0</span>
+                            </button>
+                            <button class="action-btn user-btn">
+                                <i class="fas fa-user"></i>
+                            </button>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Toolbar -->
+    <div class="mobile-toolbar">
+        <button class="toolbar-btn scroll-top-btn" id="scrollTopBtn" title="رفتن به بالای صفحه">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        <button class="toolbar-btn home-btn" title="خانه">
+            <i class="fas fa-home"></i>
+        </button>
+        <button class="toolbar-btn cart-btn-mobile" id="cartBtnMobile" title="سبد خرید">
+            <i class="fas fa-shopping-cart"></i>
+            <span class="cart-badge" id="cartCountMobile">0</span>
+        </button>
+        <button class="toolbar-btn menu-btn" id="menuToggleMobile" title="منو">
+            <i class="fas fa-bars"></i>
+        </button>
+        <button class="toolbar-btn login-btn" title="ورود / خروج">
+            <i class="fas fa-user"></i>
+        </button>
+    </div>
+
+    <!-- Half-Page Menu Overlay -->
+    <div class="menu-overlay" id="menuOverlay">
+        <div class="menu-content">
+            <div class="menu-header">
+                <h2>منوی اصلی</h2>
+                <button class="menu-close" id="menuClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="menu-sections">
+                <div class="menu-section">
+                    <h3>دسته‌بندی محصولات</h3>
+                    <ul>
+                        <li><a href="#" data-category="all">همه محصولات</a></li>
+                        <li><a href="#" data-category="men">عطر مردانه</a></li>
+                        <li><a href="#" data-category="women">عطر زنانه</a></li>
+                        <li><a href="#" data-category="unisex">عطر یونیسکس</a></li>
+                    </ul>
+                </div>
+                <div class="menu-section">
+                    <h3>برندها</h3>
+                    <ul>
+                        <li><a href="#" data-brand="Dior">Dior</a></li>
+                        <li><a href="#" data-brand="Chanel">Chanel</a></li>
+                        <li><a href="#" data-brand="Tom Ford">Tom Ford</a></li>
+                        <li><a href="#" data-brand="Armani">Armani</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Content -->
+    <div class="test-content">
+        <h1>تست ناو بار شیشه‌ای</h1>
+        <p>این صفحه برای تست ناو بار شیشه‌ای و تول بار موبایل طراحی شده است.</p>
+        
+        <div class="test-buttons">
+            <a href="#" class="test-btn">دکمه تست ۱</a>
+            <a href="#" class="test-btn">دکمه تست ۲</a>
+            <a href="#" class="test-btn">دکمه تست ۳</a>
+        </div>
+        
+        <div style="height: 100vh; display: flex; align-items: center; justify-content: center;">
+            <p>اسکرول کنید تا تول بار موبایل را ببینید</p>
+        </div>
+    </div>
+
+    <script>
+        // Simple test functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Theme toggle
+            const themeToggle = document.getElementById('themeToggle');
+            if (themeToggle) {
+                themeToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                });
+            }
+            
+            // Menu overlay
+            const menuToggle = document.getElementById('menuToggle');
+            const menuToggleMobile = document.getElementById('menuToggleMobile');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const menuClose = document.getElementById('menuClose');
+            
+            function openMenu() {
+                menuOverlay.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
+            
+            function closeMenu() {
+                menuOverlay.classList.remove('open');
+                document.body.style.overflow = '';
+            }
+            
+            if (menuToggle) menuToggle.addEventListener('click', openMenu);
+            if (menuToggleMobile) menuToggleMobile.addEventListener('click', openMenu);
+            if (menuClose) menuClose.addEventListener('click', closeMenu);
+            
+            menuOverlay.addEventListener('click', function(e) {
+                if (e.target === menuOverlay) closeMenu();
+            });
+            
+            // Scroll to top
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+            if (scrollTopBtn) {
+                scrollTopBtn.addEventListener('click', function() {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+                
+                window.addEventListener('scroll', function() {
+                    if (window.pageYOffset > 300) {
+                        scrollTopBtn.style.opacity = '1';
+                        scrollTopBtn.style.visibility = 'visible';
+                    } else {
+                        scrollTopBtn.style.opacity = '0';
+                        scrollTopBtn.style.visibility = 'hidden';
+                    }
+                });
+            }
+            
+            // Home button
+            const homeBtn = document.querySelector('.home-btn');
+            if (homeBtn) {
+                homeBtn.addEventListener('click', function() {
+                    alert('دکمه خانه کلیک شد!');
+                });
+            }
+            
+            // Cart button
+            const cartBtnMobile = document.getElementById('cartBtnMobile');
+            if (cartBtnMobile) {
+                cartBtnMobile.addEventListener('click', function() {
+                    alert('سبد خرید کلیک شد!');
+                });
+            }
+            
+            // Login button
+            const loginBtn = document.querySelector('.login-btn');
+            if (loginBtn) {
+                loginBtn.addEventListener('click', function() {
+                    alert('دکمه ورود کلیک شد!');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
