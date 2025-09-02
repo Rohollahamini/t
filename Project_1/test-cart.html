@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تست سبد خرید - عطرستان</title>
+    <style>
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .test-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .test-button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .test-button:hover {
+            background: #2563eb;
+        }
+        .cart-info {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        .cart-item {
+            background: white;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #10b981;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            display: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <h1>تست سبد خرید</h1>
+        
+        <div class="cart-info">
+            <h3>وضعیت سبد خرید:</h3>
+            <p>تعداد آیتم‌ها: <span id="cartCount">0</span></p>
+            <p>مجموع: <span id="cartTotal">۰ تومان</span></p>
+        </div>
+        
+        <div class="test-buttons">
+            <button class="test-button" onclick="testAddToCart()">تست افزودن به سبد خرید</button>
+            <button class="test-button" onclick="testClearCart()">پاک کردن سبد خرید</button>
+            <button class="test-button" onclick="testShowCart()">نمایش سبد خرید</button>
+        </div>
+        
+        <div id="cartItems" class="cart-info">
+            <h3>آیتم‌های سبد خرید:</h3>
+            <div id="cartItemsList">سبد خرید خالی است</div>
+        </div>
+    </div>
+    
+    <div id="notification" class="notification"></div>
+    
+    <script>
+        // Global cart variable
+        let cart = [];
+        
+        // Load cart from localStorage
+        function loadCartFromStorage() {
+            const storedCart = localStorage.getItem('cart');
+            if (storedCart) {
+                try {
+                    cart = JSON.parse(storedCart);
+                } catch (e) {
+                    console.error('Error loading cart from storage:', e);
+                    cart = [];
+                }
+            }
+        }
+        
+        // Save cart to localStorage
+        function saveCartToStorage() {
+            try {
+                localStorage.setItem('cart', JSON.stringify(cart));
+                console.log('Cart saved to storage:', cart);
+            } catch (e) {
+                console.error('Error saving cart to storage:', e);
+            }
+        }
+        
+        // Update cart display
+        function updateCartDisplay() {
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+            const cartItemsList = document.getElementById('cartItemsList');
+            
+            if (cart.length === 0) {
+                cartCount.textContent = '0';
+                cartTotal.textContent = '۰ تومان';
+                cartItemsList.innerHTML = 'سبد خرید خالی است';
+                return;
+            }
+            
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            
+            // Update cart total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = formatPrice(total) + ' تومان';
+            
+            // Update cart items
+            cartItemsList.innerHTML = cart.map(item => `
+                <div class="cart-item">
+                    <strong>${item.name}</strong> - ${item.volume}<br>
+                    قیمت: ${formatPrice(item.price)} تومان<br>
+                    تعداد: ${item.quantity}
+                </div>
+            `).join('');
+        }
+        
+        // Format price
+        function formatPrice(price) {
+            return new Intl.NumberFormat('fa-IR').format(price);
+        }
+        
+        // Show notification
+        function showNotification(message, type = 'info') {
+            const notification = document.getElementById('notification');
+            notification.textContent = message;
+            notification.style.display = 'block';
+            
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+        
+        // Test add to cart
+        function testAddToCart() {
+            const testProduct = {
+                id: 'test-' + Date.now(),
+                name: 'محصول تست',
+                volume: '100 میلی‌لیتر',
+                price: 100000,
+                quantity: 1
+            };
+            
+            cart.push(testProduct);
+            saveCartToStorage();
+            updateCartDisplay();
+            showNotification('محصول تست به سبد خرید اضافه شد', 'success');
+        }
+        
+        // Test clear cart
+        function testClearCart() {
+            cart = [];
+            saveCartToStorage();
+            updateCartDisplay();
+            showNotification('سبد خرید پاک شد', 'info');
+        }
+        
+        // Test show cart
+        function testShowCart() {
+            console.log('Current cart:', cart);
+            showNotification(`سبد خرید شامل ${cart.length} آیتم است`, 'info');
+        }
+        
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('Test page loaded');
+            loadCartFromStorage();
+            updateCartDisplay();
+        });
+    </script>
+</body>
+</html>

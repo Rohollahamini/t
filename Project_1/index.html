@@ -67,115 +67,7 @@
         <div class="loading-spinner"></div>
     </div>
 
-    <!-- Header -->
-    <header class="header">
-        <!-- Main Header -->
-        <div class="main-header">
-            <div class="container">
-                <!-- Navigation moved to top -->
-                <nav class="navigation">
-                    <div class="nav-content">
-                        <!-- Logo with dropdown functionality -->
-                        <div class="logo">
-                            <h1 class="logo-dropdown-toggle">عطرستان</h1>
-                            <div class="logo-dropdown">
-                                <div class="logo-dropdown-content">
-                                    <h3>درباره عطرستان</h3>
-                                    <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا. ما متعهد به ارائه بهترین خدمات و محصولات به شما هستیم.</p>
-                                    <div class="logo-dropdown-features">
-                                        <div class="feature">
-                                            <i class="fas fa-shield-alt"></i>
-                                            <span>ضمانت اصالت</span>
-                                        </div>
-                                        <div class="feature">
-                                            <i class="fas fa-truck"></i>
-                                            <span>ارسال رایگان</span>
-                                        </div>
-                                        <div class="feature">
-                                            <i class="fas fa-headset"></i>
-                                            <span>پشتیبانی ۲۴/۷</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <!-- Menu Toggle Button -->
-                        <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو">
-                            <i class="fas fa-bars"></i>
-                        </button>
-                        
-                        <div class="nav-links">
-                            <a href="index.html" class="nav-link active">خانه</a>
-                            
-                            <!-- Product Categories Dropdown -->
-                            <div class="nav-dropdown">
-                                <a href="#" class="nav-link dropdown-toggle">
-                                    محصولات <i class="fas fa-chevron-down"></i>
-                                </a>
-                                <div class="dropdown-menu">
-                                    <div class="dropdown-section">
-                                        <h4>عطر مردانه</h4>
-                                        <ul>
-                                            <li><a href="#" data-category="men">همه عطرهای مردانه</a></li>
-                                            <li><a href="#" data-brand="Dior">Dior</a></li>
-                                            <li><a href="#" data-brand="Armani">Armani</a></li>
-                                            <li><a href="#" data-brand="Tom Ford">Tom Ford</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="dropdown-section">
-                                        <h4>عطر زنانه</h4>
-                                        <ul>
-                                            <li><a href="#" data-category="women">همه عطرهای زنانه</a></li>
-                                            <li><a href="#" data-brand="Chanel">Chanel</a></li>
-                                            <li><a href="#" data-brand="Victoria's Secret">Victoria's Secret</a></li>
-                                            <li><a href="#" data-brand="Lancome">Lancome</a></li>
-                                        </ul>
-                                    </div>
-                                    <div class="dropdown-section">
-                                        <h4>عطر یونیسکس</h4>
-                                        <ul>
-                                            <li><a href="#" data-category="unisex">همه عطرهای یونیسکس</a></li>
-                                            <li><a href="#" data-brand="Jo Malone">Jo Malone</a></li>
-                                            <li><a href="#" data-brand="Hugo Boss">Hugo Boss</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <a href="articles.html" class="nav-link">مقالات</a>
-                            <a href="about.html" class="nav-link">درباره ما</a>
-                        </div>
-                        
-                        <!-- Actions moved into nav for accordion -->
-                        <div class="header-actions">
-                            <button class="action-btn" id="toggleSearchAccordion" title="جستجو">
-                                <i class="fas fa-search"></i>
-                            </button>
-                            <button class="action-btn theme-toggle" id="themeToggle">
-                                <i class="fas fa-moon"></i>
-                            </button>
-                            <button class="action-btn cart-btn" id="cartBtn">
-                                <i class="fas fa-shopping-cart"></i>
-                                <span class="badge" id="cartCount">0</span>
-                            </button>
-                            <button class="action-btn user-btn">
-                                <i class="fas fa-user"></i>
-                            </button>
-                        </div>
-                    </div>
-                </nav>
-                <div class="search-accordion">
-                    <div class="search-bar">
-                        <input type="text" placeholder="جستجو در عطرها..." id="searchAccordionInput">
-                        <button type="button" class="search-btn" id="searchAccordionSubmit">
-                            <i class="fas fa-search"></i>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <div id="site-header"></div>
 
     <!-- Mobile Toolbar -->
     <div class="mobile-toolbar">
@@ -288,19 +180,7 @@
         </div>
     </section>
 
-    <!-- Categories -->
-    <section class="categories">
-        <div class="container">
-            <h2 class="section-title">دسته‌بندی محصولات</h2>
-            <div class="category-buttons">
-                <button class="category-btn active" data-category="all">همه (۸)</button>
-                <button class="category-btn" data-category="men">مردانه (۳)</button>
-                <button class="category-btn" data-category="women">زنانه (۳)</button>
-                <button class="category-btn" data-category="unisex">یونیسکس (۲)</button>
-            </div>
-        </div>
-    </section>
-
+   
     <!-- Products with Sidebar -->
     <section class="products-with-sidebar">
         <div class="container">
@@ -599,54 +479,7 @@
         </div>
     </section>
 
-    <!-- Minimal Footer -->
-    <footer class="footer-minimal">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h4>خدمات مشتریان</h4>
-                    <ul>
-                        <li><a href="#">روش و زمان ارسال سفارش</a></li>
-                        <li><a href="#">روش های پرداخت</a></li>
-                        <li><a href="#">شرایط بازگرداندن کالا</a></li>
-                        <li><a href="#">گارانتی اصالت و سلامت فیزیکی</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>ارتباط با عطرستان</h4>
-                    <ul>
-                        <li><a href="about.html">درباره ما</a></li>
-                        <li><a href="#">ارتباط با ما</a></li>
-                        <li><a href="#">سوالات متداول</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>نماد الکترونیکی</h4>
-                    <a referrerpolicy="origin" target="_blank" href="https://trustseal.enamad.ir/?id=372375&amp;Code=KG9wrTjeETe8IdQDktQEpmUZI0oGCOna">
-                        <img referrerpolicy="origin" src="https://trustseal.enamad.ir/logo.aspx?id=372375&amp;Code=KG9wrTjeETe8IdQDktQEpmUZI0oGCOna" alt="" style="cursor:pointer" code="KG9wrTjeETe8IdQDktQEpmUZI0oGCOna">
-                    </a>
-                </div>
-                <div class="footer-section">
-                    <h4>ارتباط با ما</h4>
-                    <div class="contact-info">
-                        <div class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>تهران، میدان انقلاب، خیابان منیری جاوید</span>
-                        </div>
-                        <div class="contact-item">
-                            <i class="fas fa-phone"></i>
-                            <span>09021272575 - 02166485247</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <div class="copyright">
-                    کلیه حقوق مادی و معنوی برای این سایت محفوظ می باشد
-                </div>
-            </div>
-        </div>
-    </footer>
+    <div id="site-footer"></div>
 
     <!-- Cart Sidebar -->
     <div class="cart-sidebar" id="cartSidebar">
@@ -691,6 +524,7 @@
     
 
     <!-- JavaScript -->
+    <script src="common.js" defer></script>
     <script src="script.js" defer></script>
     <script>
         // Prevent FOUC and handle loading

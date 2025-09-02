@@ -1,0 +1,183 @@
+<header class="header">
+    <div class="main-header">
+        <div class="container">
+            <nav class="navigation">
+                <div class="nav-content">
+                    <div class="logo">
+                        <h1 class="logo-dropdown-toggle">عطرستان</h1>
+                        <div class="logo-dropdown">
+                            <div class="logo-dropdown-content">
+                                <h3>درباره عطرستان</h3>
+                                <p>فروشگاه آنلاین عطر با بهترین برندهای دنیا، ارسال رایگان و ضمانت اصالت کالا. ما متعهد به ارائه بهترین خدمات و محصولات به شما هستیم.</p>
+                                <div class="logo-dropdown-features">
+                                    <div class="feature">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>ضمانت اصالت</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-truck"></i>
+                                        <span>ارسال رایگان</span>
+                                    </div>
+                                    <div class="feature">
+                                        <i class="fas fa-headset"></i>
+                                        <span>پشتیبانی ۲۴/۷</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="menu-toggle" id="menuToggle" aria-label="باز کردن منو">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <div class="nav-links">
+                        <a href="index.html" class="nav-link">خانه</a>
+                        <div class="nav-dropdown">
+                            <a href="#" class="nav-link dropdown-toggle">
+                                محصولات <i class="fas fa-chevron-down"></i>
+                            </a>
+                            <div class="dropdown-menu">
+                                <div class="dropdown-section">
+                                    <h4>عطر مردانه</h4>
+                                    <ul>
+                                        <li><a href="#" data-category="men">همه عطرهای مردانه</a></li>
+                                        <li><a href="#" data-brand="Dior">Dior</a></li>
+                                        <li><a href="#" data-brand="Armani">Armani</a></li>
+                                        <li><a href="#" data-brand="Tom Ford">Tom Ford</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-section">
+                                    <h4>عطر زنانه</h4>
+                                    <ul>
+                                        <li><a href="#" data-category="women">همه عطرهای زنانه</a></li>
+                                        <li><a href="#" data-brand="Chanel">Chanel</a></li>
+                                        <li><a href="#" data-brand="Victoria's Secret">Victoria's Secret</a></li>
+                                        <li><a href="#" data-brand="Lancome">Lancome</a></li>
+                                    </ul>
+                                </div>
+                                <div class="dropdown-section">
+                                    <h4>عطر یونیسکس</h4>
+                                    <ul>
+                                        <li><a href="#" data-category="unisex">همه عطرهای یونیسکس</a></li>
+                                        <li><a href="#" data-brand="Jo Malone">Jo Malone</a></li>
+                                        <li><a href="#" data-brand="Hugo Boss">Hugo Boss</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="articles.html" class="nav-link">مقالات</a>
+                        <a href="about.html" class="nav-link">درباره ما</a>
+                    </div>
+                    <div class="header-actions">
+                        <button class="action-btn" id="toggleSearchAccordion" title="جستجو">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <button class="action-btn theme-toggle" id="themeToggle">
+                            <i class="fas fa-moon"></i>
+                        </button>
+                        <button class="action-btn cart-btn" id="cartBtn">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="badge" id="cartCount">0</span>
+                        </button>
+                        <button class="action-btn user-btn">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+            </nav>
+            <div class="search-accordion">
+                <div class="search-bar">
+                    <input type="text" placeholder="جستجو در عطرها..." id="searchAccordionInput">
+                    <button type="button" class="search-btn" id="searchAccordionSubmit">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="mobile-toolbar">
+    <button class="toolbar-btn scroll-top-btn" id="scrollTopBtn" title="رفتن به بالای صفحه">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    <button class="toolbar-btn home-btn" title="خانه">
+        <i class="fas fa-home"></i>
+    </button>
+    <button class="toolbar-btn cart-btn-mobile" id="cartBtnMobile" title="سبد خرید">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-badge" id="cartCountMobile">0</span>
+    </button>
+    <button class="toolbar-btn menu-btn" id="menuToggleMobile" title="منو">
+        <i class="fas fa-bars"></i>
+    </button>
+    <button class="toolbar-btn login-btn" title="ورود / خروج">
+        <i class="fas fa-user"></i>
+    </button>
+</div>
+
+<div class="menu-overlay" id="menuOverlay">
+    <div class="menu-content">
+        <div class="menu-header">
+            <h2>منوی اصلی</h2>
+            <button class="menu-close" id="menuClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="menu-sections">
+            <div class="menu-section">
+                <a href="index.html" class="menu-link">
+                    <i class="fas fa-home"></i>
+                    <span>خانه</span>
+                </a>
+            </div>
+            <div class="menu-section">
+                <a href="articles.html" class="menu-link">
+                    <i class="fas fa-newspaper"></i>
+                    <span>مقالات</span>
+                </a>
+            </div>
+            <div class="menu-section">
+                <a href="about.html" class="menu-link">
+                    <i class="fas fa-info-circle"></i>
+                    <span>درباره ما</span>
+                </a>
+            </div>
+            <div class="menu-section accordion-section">
+                <div class="menu-accordion-toggle">
+                    <i class="fas fa-box"></i>
+                    <span>محصولات</span>
+                    <i class="fas fa-chevron-down accordion-icon"></i>
+                </div>
+                <div class="menu-accordion-content">
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>دسته‌بندی محصولات</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-body">
+                            <a href="#" data-category="all">همه محصولات</a>
+                            <a href="#" data-category="men">عطر مردانه</a>
+                            <a href="#" data-category="women">عطر زنانه</a>
+                            <a href="#" data-category="unisex">عطر یونیسکس</a>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header">
+                            <span>برندها</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="accordion-body">
+                            <a href="#" data-brand="Dior">Dior</a>
+                            <a href="#" data-brand="Chanel">Chanel</a>
+                            <a href="#" data-brand="Tom Ford">Tom Ford</a>
+                            <a href="#" data-brand="Armani">Armani</a>
+                            <a href="#" data-brand="Victoria's Secret">Victoria's Secret</a>
+                            <a href="#" data-brand="Jo Malone">Jo Malone</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
